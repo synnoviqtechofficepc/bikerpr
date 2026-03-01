@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trail Blazer Pro FS — Full suspension mountain bike rental at VeloWorks. 29", Fox 34 fork, SRAM NX 12-speed. Book online.">
+  <title>Trail Blazer Pro FS — Rental Details | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <style>
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: var(--sp-10);
+      align-items: start;
+    }
+    .sticky-booking-card {
+      position: sticky;
+      top: calc(var(--header-height) + 24px);
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-thumbs {
+      display: flex;
+      gap: var(--sp-2);
+      margin-top: var(--sp-2);
+    }
+    .gallery-thumb {
+      width: 80px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .gallery-thumb.active { border-color: var(--clr-primary); }
+    .gallery-thumb img { width:100%;height:100%;object-fit:cover; }
+    @media (max-width:1024px) { .detail-layout { grid-template-columns: 1fr; } .sticky-booking-card { position:static; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="home-community.html" class="header-logo">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <!-- NAV -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <!-- MOBILE ACTIONS (inside nav) -->
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+          <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+
+      <button class="action-icon-only" id="themeToggle">
+        <span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+
+      <button class="action-icon-only" id="langToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </button>
+
+      <!-- Desktop Buttons -->
+      <div class="desktop-only header-cta">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><a href="rentals.html" class="breadcrumb__link">Rentals</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Trail Blazer Pro FS</span></div>
+      </nav>
+
+      <div class="detail-layout">
+        <!-- LEFT: Bike info -->
+        <div>
+          <!-- Gallery -->
+          <div style="border-radius:var(--radius-xl);overflow:hidden;background:var(--clr-bg-muted);aspect-ratio:16/10;position:relative;">
+            <img id="mainGalleryImg" src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1" alt="Trail Blazer Pro FS full-suspension mountain bike" style="width:100%;height:100%;object-fit:cover;">
+            <span class="card__badge" style="top:var(--sp-4);left:var(--sp-4);font-size:var(--fs-sm);padding:8px 16px;">4 Available Today</span>
+          </div>
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" onclick="document.getElementById('mainGalleryImg').src='https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1'">
+              <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=160&h=120&dpr=1" alt="Bike view 1">
+            </div>
+            <div class="gallery-thumb" onclick="document.getElementById('mainGalleryImg').src='https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1'">
+              <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=160&h=120&dpr=1" alt="Bike view 2">
+            </div>
+            <div class="gallery-thumb" onclick="document.getElementById('mainGalleryImg').src='https://images.pexels.com/photos/1595485/pexels-photo-1595485.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1'">
+              <img src="https://images.pexels.com/photos/1595485/pexels-photo-1595485.jpeg?auto=compress&cs=tinysrgb&w=160&h=120&dpr=1" alt="Bike in action">
+            </div>
+            <div class="gallery-thumb" onclick="document.getElementById('mainGalleryImg').src='https://images.pexels.com/photos/5808012/pexels-photo-5808012.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1'">
+              <img src="https://images.pexels.com/photos/5808012/pexels-photo-5808012.jpeg?auto=compress&cs=tinysrgb&w=160&h=120&dpr=1" alt="Detail shot">
+            </div>
+            <div class="gallery-thumb" onclick="document.getElementById('mainGalleryImg').src='https://images.pexels.com/photos/2128108/pexels-photo-2128108.jpeg?auto=compress&cs=tinysrgb&w=900&h=563&dpr=1'">
+              <img src="https://images.pexels.com/photos/2128108/pexels-photo-2128108.jpeg?auto=compress&cs=tinysrgb&w=160&h=120&dpr=1" alt="On the trail">
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div style="margin-top:var(--sp-8);">
+            <div style="display:flex;align-items:center;gap:var(--sp-4);margin-bottom:var(--sp-3);flex-wrap:wrap;">
+              <span class="badge badge--primary">Mountain</span>
+              <span class="badge badge--success">Available Now</span>
+              <div style="display:flex;gap:2px;color:#F59E0B;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <span style="font-size:var(--fs-xs);color:var(--clr-text-muted);">4.9 (143 rentals)</span>
+            </div>
+            <h1 style="font-size:var(--fs-4xl);font-weight:900;margin-bottom:var(--sp-4);">Trail Blazer Pro FS</h1>
+            <p style="color:var(--clr-text-muted);line-height:var(--lh-relaxed);font-size:var(--fs-lg);margin-bottom:var(--sp-6);">
+              Our most popular mountain bike rental. Full-suspension platform excels on everything from flowy singletracks in Forest Park to technical rock gardens on Powell Butte. Serviced before every rental, adjusted for your height at pickup.
+            </p>
+
+            <!-- Specs -->
+            <h2 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-4);">Bike Specifications</h2>
+            <div class="spec-list" style="margin-bottom:var(--sp-8);">
+              <div class="spec-row"><span class="spec-key">Frame</span><span class="spec-value">Alloy hardtail, 29" geometry</span></div>
+              <div class="spec-row"><span class="spec-key">Fork</span><span class="spec-value">Fox 34 Performance, 140mm travel</span></div>
+              <div class="spec-row"><span class="spec-key">Rear Shock</span><span class="spec-value">Fox Float DPS, 130mm travel</span></div>
+              <div class="spec-row"><span class="spec-key">Drivetrain</span><span class="spec-value">SRAM NX Eagle 12-speed</span></div>
+              <div class="spec-row"><span class="spec-key">Brakes</span><span class="spec-value">Shimano MT520 Hydraulic, 180/160mm</span></div>
+              <div class="spec-row"><span class="spec-key">Wheels</span><span class="spec-value">29" WTB ST i23 TCS rims</span></div>
+              <div class="spec-row"><span class="spec-key">Tyres</span><span class="spec-value">Maxxis Minion DHF 2.5" F / DHR II 2.4" R</span></div>
+              <div class="spec-row"><span class="spec-key">Sizes Available</span><span class="spec-value">S, M, L, XL (fitted at pickup)</span></div>
+              <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-value">~14.2kg</span></div>
+            </div>
+
+            <!-- Included in rental -->
+            <h2 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-4);">What's Included</h2>
+            <div class="grid grid--3" style="gap:var(--sp-3);margin-bottom:var(--sp-8);">
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22V12"/><path d="M12 12C8 12 4 8 4 4h16c0 4-4 8-8 8z"/><path d="M6 14a6 6 0 0 0 12 0"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">Helmet</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Fitted at pickup</div>
+              </div>
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">D-Lock</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Kryptonite rated</div>
+              </div>
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">Trail Map</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Portland area rides</div>
+              </div>
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">Multi-Tool</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Basic roadside kit</div>
+              </div>
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">Mini Pump</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">High-volume Presta</div>
+              </div>
+              <div style="padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <div style="font-size:var(--fs-sm);font-weight:600;">Support Line</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Call us if anything's wrong</div>
+              </div>
+            </div>
+
+            <!-- Reviews -->
+            <h2 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-5);">Renter Reviews</h2>
+            <div style="display:flex;flex-direction:column;gap:var(--sp-4);">
+              <div style="padding:var(--sp-5);background:var(--clr-bg-alt);border-radius:var(--radius-lg);border:1px solid var(--clr-border);">
+                <div style="display:flex;gap:var(--sp-3);align-items:center;margin-bottom:var(--sp-3);">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--clr-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">J</div>
+                  <div>
+                    <div style="font-weight:700;font-size:var(--fs-sm);">Jamie R.</div>
+                    <div style="color:#F59E0B;font-size:12px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>  <span style="color:var(--clr-text-muted);font-size:var(--fs-xs);">2 weeks ago</span></div>
+                  </div>
+                </div>
+                <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);line-height:var(--lh-relaxed);">The Trail Blazer handled everything I threw at it on Powell Butte. Staff adjusted the fork pressure for my weight before I left. Couldn't ask for better.</p>
+              </div>
+              <div style="padding:var(--sp-5);background:var(--clr-bg-alt);border-radius:var(--radius-lg);border:1px solid var(--clr-border);">
+                <div style="display:flex;gap:var(--sp-3);align-items:center;margin-bottom:var(--sp-3);">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--clr-secondary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">K</div>
+                  <div>
+                    <div style="font-weight:700;font-size:var(--fs-sm);">Kim S.</div>
+                    <div style="color:#F59E0B;font-size:12px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>  <span style="color:var(--clr-text-muted);font-size:var(--fs-xs);">1 month ago</span></div>
+                  </div>
+                </div>
+                <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);line-height:var(--lh-relaxed);">My own bike is in the shop — rented this one for a weekend and forgot I wasn't riding my own. Immaculate condition. Will rent again.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Booking card (sticky) -->
+        <div>
+          <div class="sticky-booking-card">
+            <div style="padding:var(--sp-6);border-bottom:1px solid var(--clr-border);">
+              <div style="font-size:var(--fs-3xl);font-weight:900;color:var(--clr-primary);">$35<span style="font-size:var(--fs-base);color:var(--clr-text-muted);font-weight:400;"> / half-day</span></div>
+              <div style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-top:4px;">$55 / full day &nbsp;·&nbsp; $20 / hour</div>
+            </div>
+            <div style="padding:var(--sp-6);">
+              <form id="quickBookForm" novalidate>
+                <div class="form-group" style="margin-bottom:var(--sp-4);">
+                  <label for="rentalDate" class="form-label">Rental Date <span class="required">*</span></label>
+                  <input type="date" id="rentalDate" class="form-control" required min="2026-02-22">
+                </div>
+                <div class="form-row" style="margin-bottom:var(--sp-4);">
+                  <div class="form-group">
+                    <label for="rentalDuration" class="form-label">Duration</label>
+                    <select id="rentalDuration" class="form-control form-select">
+                      <option>1 Hour — $20</option>
+                      <option selected>Half Day — $35</option>
+                      <option>Full Day — $55</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="bikeSize" class="form-label">Frame Size</label>
+                    <select id="bikeSize" class="form-control form-select">
+                      <option>Small (5'0"–5'5")</option>
+                      <option selected>Medium (5'5"–5'10")</option>
+                      <option>Large (5'10"–6'2")</option>
+                      <option>XL (6'2"+)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom:var(--sp-4);">
+                  <label for="addOns" class="form-label">Add-ons</label>
+                  <div style="display:flex;flex-direction:column;gap:var(--sp-2);">
+                    <label class="form-check">
+                      <input type="checkbox" class="form-check-input"> <span class="form-check-label">Pannier bags (+$5)</span>
+                    </label>
+                    <label class="form-check">
+                      <input type="checkbox" class="form-check-input"> <span class="form-check-label">Cycling gloves (+$3)</span>
+                    </label>
+                    <label class="form-check">
+                      <input type="checkbox" class="form-check-input"> <span class="form-check-label">Water bottle (+$2)</span>
+                    </label>
+                  </div>
+                </div>
+                <div style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:var(--sp-4);margin-bottom:var(--sp-5);">
+                  <div style="display:flex;justify-content:space-between;font-size:var(--fs-sm);margin-bottom:var(--sp-2);">
+                    <span>Trail Blazer Pro FS × 1</span><span>$35.00</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:var(--fs-sm);margin-bottom:var(--sp-2);">
+                    <span>Helmet & lock</span><span style="color:var(--clr-success);">Free</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:var(--fs-sm);margin-bottom:var(--sp-3);">
+                    <span>Deposit (refundable)</span><span>$15.00</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-weight:800;font-size:var(--fs-base);padding-top:var(--sp-3);border-top:1px solid var(--clr-border);">
+                    <span>Total Due Today</span><span style="color:var(--clr-primary);">$50.00</span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn--primary btn--block btn--lg">Reserve This Bike</button>
+                <p style="font-size:var(--fs-xs);color:var(--clr-text-muted);text-align:center;margin-top:var(--sp-3);">Free cancellation up to 24 hours before pickup. No hidden fees.</p>
+              </form>
+            </div>
+            <div style="padding:var(--sp-4) var(--sp-6);background:var(--clr-bg-alt);border-top:1px solid var(--clr-border);">
+              <p style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Theft protection available at pickup for $8/day</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="../assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+  document.getElementById('quickBookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    window.VeloWorks?.Toast?.show('Redirecting to confirm your booking...', 'success');
+    setTimeout(() => window.location.href = 'bookings.html', 1200);
+  });
+  document.querySelectorAll('.gallery-thumb').forEach(t => {
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.gallery-thumb').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

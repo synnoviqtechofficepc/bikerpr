@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks Bike Rentals — Mountain, road, electric, city, and cargo bikes available by the hour, half-day, or full day. Book online instantly.">
+  <title>Bike Rentals | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      padding: var(--sp-6);
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      margin-bottom: var(--sp-8);
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--clr-border);
+      background: none;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--clr-text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--clr-primary);
+      border-color: var(--clr-primary);
+      color: #fff;
+    }
+    .rental-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .rental-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .rental-card__img {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .rental-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .rental-card:hover .rental-card__img img { transform: scale(1.06); }
+    .rental-card__body { padding: var(--sp-5); flex: 1; }
+    .rental-card__footer {
+      padding: var(--sp-4) var(--sp-5);
+      border-top: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .avail-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="home-community.html" class="header-logo">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <!-- NAV -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <!-- MOBILE ACTIONS (inside nav) -->
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+          <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+
+      <button class="action-icon-only" id="themeToggle">
+        <span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+
+      <button class="action-icon-only" id="langToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </button>
+
+      <!-- Desktop Buttons -->
+      <div class="desktop-only header-cta">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Rentals</span></div>
+      </nav>
+      <h1 class="page-hero__title">Rent the Right Bike for Your Ride</h1>
+      <p class="page-hero__subtitle">35 bikes across 6 categories — maintained daily, equipped with helmet & lock. Available hourly, half-day, or full-day. Book in 60 seconds.</p>
+    </div>
+  </section>
+
+  <!-- RENTAL FILTERS + GRID -->
+  <section class="section">
+    <div class="container">
+      <!-- Availability Strip -->
+      <div class="alert alert--info" style="margin-bottom:var(--sp-6);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div>
+          <strong>Live Availability:</strong> Showing bikes available for today. Select a date below to check future availability.
+          <a href="bookings.html" style="margin-left:var(--sp-3);font-weight:700;">Check All Dates →</a>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar" role="group" aria-label="Filter by bike type">
+        <span style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-text-muted);margin-right:var(--sp-2);">Filter:</span>
+        <button class="filter-btn active" data-filter="all">All Bikes</button>
+        <button class="filter-btn" data-filter="mountain"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><polygon points="3 17 8 6 13 11 18 6 21 17"/></svg> Mountain</button>
+        <button class="filter-btn" data-filter="road"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-2"/><rect x="9" y="11" width="8" height="10"/><path d="M9 11H4"/></svg> Road</button>
+        <button class="filter-btn" data-filter="electric"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Electric</button>
+        <button class="filter-btn" data-filter="city"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M6 9l6-6 6 6"/><path d="M6 12l6-6 6 6"/><path d="M6 15l6-6 6 6"/><path d="M6 18l6-6 6 6"/></svg> City</button>
+        <button class="filter-btn" data-filter="gravel">🪨 Gravel</button>
+        <div style="margin-left:auto;display:flex;gap:var(--sp-3);align-items:center;">
+          <label for="sortRentals" class="sr-only">Sort by</label>
+          <select id="sortRentals" class="form-control form-select" style="width:auto;padding:8px 36px 8px 12px;font-size:var(--fs-sm);">
+            <option>Sort: Price Low → High</option>
+            <option>Sort: Price High → Low</option>
+            <option>Sort: Popularity</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Rental Cards Grid -->
+      <div class="grid grid--3 stagger">
+
+        <article class="rental-card animate-fade-up" data-type="mountain">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="Trail Blazer Full-Suspension Mountain Bike" loading="lazy">
+            <span class="card__badge">4 Available</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);">Mountain</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">Trail Blazer Pro FS</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">29" full-suspension, Fox 34 fork, SRAM NX 12-speed, Shimano hydraulic brakes. Handles everything Forest Park throws at you.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--neutral">29" Wheels</span>
+              <span class="badge badge--neutral">Full Suspension</span>
+              <span class="badge badge--neutral">12-Speed</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$35 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$55/day · $20/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+        <article class="rental-card animate-fade-up" data-type="road">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="Road Sprint 500 Carbon Road Bike" loading="lazy">
+            <span class="card__badge">3 Available</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);">Road</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">Road Sprint 500</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">Carbon fork, alloy frame, Shimano 105 11-speed, 25mm Continental tyres. Rolls fast, climbs light.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--neutral">Carbon Fork</span>
+              <span class="badge badge--neutral">Shimano 105</span>
+              <span class="badge badge--neutral">11-Speed</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$40 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$65/day · $25/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+        <article class="rental-card animate-fade-up" data-type="electric">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/1431117/pexels-photo-1431117.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="E-Commuter Pro Electric Bike" loading="lazy">
+            <span class="card__badge" style="background:var(--clr-secondary);"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> 2 Available</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);color:var(--clr-secondary);">Electric</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">E-Commuter Pro</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">Bosch Performance Line mid-drive, 80km range, integrated lights, rear rack, hydraulic brakes. Portland's bridges feel flat.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--orange">Bosch Motor</span>
+              <span class="badge badge--neutral">80km Range</span>
+              <span class="badge badge--neutral">Rack Included</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$55 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$90/day · $32/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+        <article class="rental-card animate-fade-up" data-type="city">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/212185/pexels-photo-212185.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="City Cruiser 7 hybrid" loading="lazy">
+            <span class="card__badge">8 Available</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);">City / Hybrid</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">City Cruiser 7</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">7-speed Shimano, upright bars, fenders, kickstand, front basket. The perfect Portland explorer. Step-through available.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--neutral">Fenders</span>
+              <span class="badge badge--neutral">Basket</span>
+              <span class="badge badge--success">Step-Through</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$22 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$35/day · $14/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+        <article class="rental-card animate-fade-up" data-type="gravel">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/1595485/pexels-photo-1595485.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="Gravel King 700c gravel bike" loading="lazy">
+            <span class="card__badge">2 Available</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);">Gravel</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">Gravel King 700c</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">650b compatible, GRX 2x11, 40mm Panaracer gravel tyres, flared bars. From paved paths to forest fire roads.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--neutral">GRX Groupset</span>
+              <span class="badge badge--neutral">Flared Bars</span>
+              <span class="badge badge--neutral">40mm Tyres</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$45 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$72/day · $28/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+        <article class="rental-card animate-fade-up" data-type="electric">
+          <div class="rental-card__img">
+            <img src="https://images.pexels.com/photos/4814010/pexels-photo-4814010.jpeg?auto=compress&cs=tinysrgb&w=600&h=375&dpr=1" alt="Cargo Family electric cargo bike" loading="lazy">
+            <span class="card__badge" style="background:var(--clr-info);">Family Size</span>
+          </div>
+          <div class="rental-card__body">
+            <div class="eyebrow" style="margin-bottom:var(--sp-2);">Electric Cargo</div>
+            <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-2);">Family Cargo e-Bike</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-4);">Tern GSD platform, rear child seat fits two kids, 100kg cargo capacity, 65km range. The school-run solved.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+              <span class="badge badge--info">Child Seats</span>
+              <span class="badge badge--neutral">65km Range</span>
+              <span class="badge badge--neutral">100kg Payload</span>
+            </div>
+          </div>
+          <div class="rental-card__footer">
+            <div>
+              <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">$65 <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">/ half-day</span></div>
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">$110/day · $38/hour</div>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book Now</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE AVAILABILITY GRID -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Live Availability</div>
+        <h2 class="section__title">Today's Rental Slots</h2>
+        <p class="section__subtitle">Green = available to book now. Click any available slot to jump to booking.</p>
+      </div>
+      <div class="rental-availability-grid" style="margin-top:var(--sp-8);overflow-x:auto;"></div>
+    </div>
+  </section>
+
+  <!-- RENTAL PROCESS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">How Rentals Work</div>
+        <h2 class="section__title">Ready to Ride in Minutes</h2>
+      </div>
+      <div class="process-steps stagger" style="margin-top:var(--sp-12);">
+        <div class="process-step animate-fade-up">
+          <div class="process-step__num">1</div>
+          <h3 class="process-step__title">Book Online</h3>
+          <p class="process-step__text">Select your bike, date, and time slot. Pay a $15 deposit to hold your reservation.</p>
+        </div>
+        <div class="process-step animate-fade-up">
+          <div class="process-step__num">2</div>
+          <h3 class="process-step__title">Pick Up</h3>
+          <p class="process-step__text">Arrive at the shop, show your confirmation, get fitted, and ride. Helmet and lock always included.</p>
+        </div>
+        <div class="process-step animate-fade-up">
+          <div class="process-step__num">3</div>
+          <h3 class="process-step__title">Return & Go</h3>
+          <p class="process-step__text">Drop the bike back at the shop. Final balance settled on return. Receipt emailed instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="cta-banner__title">Members Get 30% Off Every Rental</h2>
+      <p class="cta-banner__sub">Join VeloWorks membership and save on every ride, every service, every time.</p>
+      <div class="cta-banner__actions">
+        <a href="membership.html" class="btn btn--outline-white btn--xl">View Membership Plans</a>
+        <a href="bookings.html" class="btn btn--secondary btn--xl">Book a Rental Now</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="../assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:hello@veloworks.com">hello@veloworks.com</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/booking.js"></script>
+<script>
+  // Filter functionality
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.rental-card').forEach(card => {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your bike repair status at VeloWorks. Enter your ticket number to see real-time progress from intake through ready-to-collect.">
+  <title>Repair Status Tracker | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="home-community.html" class="header-logo">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <!-- NAV -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <!-- MOBILE ACTIONS (inside nav) -->
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+          <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+
+      <button class="action-icon-only" id="themeToggle">
+        <span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+
+      <button class="action-icon-only" id="langToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </button>
+
+      <!-- Desktop Buttons -->
+      <div class="desktop-only header-cta">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <section class="page-hero" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img src="https://images.pexels.com/photos/10263878/pexels-photo-10263878.jpeg?auto=compress&cs=tinysrgb&w=1600&h=600&dpr=1" alt="Mechanic working on a bicycle repair" style="width:100%;height:100%;object-fit:cover;opacity:0.15;">
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><a href="repairs.html" class="breadcrumb__link">Repairs</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Repair Status</span></div>
+      </nav>
+      <h1 class="page-hero__title">Track Your Repair</h1>
+      <p class="page-hero__subtitle">Enter your ticket number to see exactly where your bike is in our repair queue — updated in real time by your mechanic.</p>
+    </div>
+  </section>
+
+  <!-- SEARCH / LOOKUP -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);padding:var(--sp-10);box-shadow:var(--shadow-md);">
+        <h2 style="font-size:var(--fs-2xl);font-weight:700;margin-bottom:var(--sp-3);">Find Your Repair Ticket</h2>
+        <p style="color:var(--clr-text-muted);margin-bottom:var(--sp-6);">Your ticket number was sent via email when you dropped off your bike. It looks like <strong>#TKT-A3F7X</strong>.</p>
+        <form id="ticketSearch" style="display:flex;gap:var(--sp-3);">
+          <div style="flex:1;">
+            <label for="ticketNum" class="form-label sr-only">Ticket Number</label>
+            <input type="text" id="ticketNum" class="form-control" placeholder="e.g. TKT-A3F7X or your email address" style="font-size:var(--fs-base);padding:14px 16px;" value="TKT-A3F7X">
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg" style="white-space:nowrap;">Look Up</button>
+        </form>
+      </div>
+
+      <!-- REPAIR STATUS RESULT (Demo — always shown) -->
+      <div id="repairResult" style="margin-top:var(--sp-8);">
+
+        <!-- Ticket Header Card -->
+        <div style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);">
+          <div style="padding:var(--sp-6);background:linear-gradient(135deg,#0F172A,#1a3a2a);color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-4);">
+            <div>
+              <div style="font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.50);margin-bottom:var(--sp-1);">Repair Ticket</div>
+              <div style="font-size:var(--fs-3xl);font-weight:900;font-family:var(--font-mono);">#TKT-A3F7X</div>
+            </div>
+            <div style="text-align:right;">
+              <span class="badge badge--warning" style="font-size:var(--fs-sm);padding:8px 16px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> In Progress</span>
+              <div style="font-size:var(--fs-xs);color:rgba(255,255,255,0.55);margin-top:var(--sp-2);">Opened: Feb 19, 2026 · 9:14 AM</div>
+            </div>
+          </div>
+
+          <div style="padding:var(--sp-6);">
+            <!-- Bike details -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);margin-bottom:var(--sp-6);">
+              <div>
+                <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-2);">Bike</div>
+                <div style="font-weight:700;font-size:var(--fs-lg);">Trek Marlin 7</div>
+                <div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">2022 · Dark Aquatic Blue</div>
+              </div>
+              <div>
+                <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-2);">Assigned Mechanic</div>
+                <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--clr-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--fs-base);">L</div>
+                  <div>
+                    <div style="font-weight:700;">Lena Ortiz</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Service Manager</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-2);">Service Requested</div>
+                <div style="font-weight:600;">Drivetrain Service + Brake Bleed</div>
+              </div>
+              <div>
+                <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-2);">Est. Completion</div>
+                <div style="font-weight:700;color:var(--clr-primary);font-size:var(--fs-lg);">Feb 21, 2026</div>
+                <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">By 5:00 PM</div>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div style="margin-bottom:var(--sp-6);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-3);">
+                <span style="font-size:var(--fs-sm);font-weight:700;">Overall Progress</span>
+                <span style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);">60% Complete</span>
+              </div>
+              <div class="repair-progress">
+                <div class="repair-progress__bar" data-width="60%" style="width:0%"></div>
+              </div>
+            </div>
+
+            <!-- Timeline -->
+            <h3 style="font-size:var(--fs-base);font-weight:700;margin-bottom:var(--sp-5);">Repair Timeline</h3>
+            <div class="timeline" role="list">
+              <div class="timeline__step done" role="listitem">
+                <div class="timeline__node" aria-label="Complete"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline__label">Intake<div class="timeline__date">Feb 19 · 9:14am</div></div>
+              </div>
+              <div class="timeline__step done" role="listitem">
+                <div class="timeline__node" aria-label="Complete"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline__label">Diagnosed<div class="timeline__date">Feb 19 · 11:30am</div></div>
+              </div>
+              <div class="timeline__step active" role="listitem">
+                <div class="timeline__node" aria-label="Current">3</div>
+                <div class="timeline__label">In Progress<div class="timeline__date">Feb 20 · ongoing</div></div>
+              </div>
+              <div class="timeline__step" role="listitem">
+                <div class="timeline__node" aria-label="Upcoming">4</div>
+                <div class="timeline__label">Quality Check<div class="timeline__date">Pending</div></div>
+              </div>
+              <div class="timeline__step" role="listitem">
+                <div class="timeline__node" aria-label="Upcoming">5</div>
+                <div class="timeline__label">Ready for Pickup<div class="timeline__date">Est. Feb 21</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mechanic's Notes -->
+        <div style="margin-top:var(--sp-6);background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);padding:var(--sp-6);">
+          <h3 style="font-size:var(--fs-lg);font-weight:700;margin-bottom:var(--sp-5);">Mechanic's Notes</h3>
+          <div class="vtimeline">
+            <div class="vtimeline__item done">
+              <div class="vtimeline__dot"></div>
+              <div class="vtimeline__title">Intake & Initial Inspection</div>
+              <div class="vtimeline__meta">Feb 19, 2026 · 9:14 AM · Lena Ortiz</div>
+              <div class="vtimeline__body">Bike received in good cosmetic condition. Noted significant chain stretch (0.75%), cassette showing wear indicators, rear derailleur cable frayed near barrel adjuster. Front brake lever spongy — likely needs bleed. Will confirm after full diagnostic.</div>
+            </div>
+            <div class="vtimeline__item done">
+              <div class="vtimeline__dot"></div>
+              <div class="vtimeline__title">Diagnostic Complete — Quote Approved</div>
+              <div class="vtimeline__meta">Feb 19, 2026 · 11:30 AM · Lena Ortiz</div>
+              <div class="vtimeline__body">Customer approved quote: chain + cassette replacement, full drivetrain cable service, front hydraulic brake bleed, rotor clean. Parts ordered from Trek warehouse — arriving morning of Feb 20. Estimated completion Feb 21 by 5 PM.</div>
+            </div>
+            <div class="vtimeline__item active">
+              <div class="vtimeline__dot"></div>
+              <div class="vtimeline__title">Work in Progress</div>
+              <div class="vtimeline__meta">Feb 20, 2026 · 10:00 AM · Lena Ortiz</div>
+              <div class="vtimeline__body">Parts received. Chain and cassette installed. Rear derailleur cables replaced and indexed. Front brake bleed in progress. Rotor surface cleaned and bedded in. On track for Feb 21 completion.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote Summary -->
+        <div style="margin-top:var(--sp-6);background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);padding:var(--sp-6);">
+          <h3 style="font-size:var(--fs-lg);font-weight:700;margin-bottom:var(--sp-5);">Repair Quote Summary</h3>
+          <table class="invoice-table">
+            <thead>
+              <tr>
+                <th>Service / Part</th>
+                <th style="text-align:right;">Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>KMC X12 Chain replacement (incl. part)</td><td style="text-align:right;">$42.00</td></tr>
+              <tr><td>Shimano HG50 11-32t Cassette (incl. part)</td><td style="text-align:right;">$58.00</td></tr>
+              <tr><td>Rear derailleur cable & housing service (labour)</td><td style="text-align:right;">$35.00</td></tr>
+              <tr><td>Front hydraulic brake bleed (labour)</td><td style="text-align:right;">$30.00</td></tr>
+              <tr><td>Rotor clean & bedding (incl.)</td><td style="text-align:right;color:var(--clr-success);">Free</td></tr>
+              <tr><td>Diagnostic inspection</td><td style="text-align:right;color:var(--clr-success);">Free</td></tr>
+              <tr>
+                <td style="font-weight:800;font-size:var(--fs-base);">Total (incl. parts & labour)</td>
+                <td style="text-align:right;font-weight:800;font-size:var(--fs-lg);color:var(--clr-primary);">$165.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:var(--sp-4);">All work covered by our 90-day parts & labour warranty. Payment due at collection — cash, card, or contactless.</p>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-6);flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn--outline">Contact My Mechanic</a>
+          <a href="dashboard-user.html" class="btn btn--ghost">View in Dashboard</a>
+          <button class="btn btn--ghost" onclick="window.VeloWorks?.Toast?.show('Repair status shared to your email.','info')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Email Status Update</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="../assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+  document.getElementById('ticketSearch').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('repairResult').scrollIntoView({behavior:'smooth',block:'start'});
+    window.VeloWorks?.Toast?.show('Ticket #TKT-A3F7X found!','success');
+  });
+  // Animate progress bar on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelector('.repair-progress__bar').style.width = '60%';
+    }, 600);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks — Something exciting is on its way. Join our mailing list to be the first to know.">
+  <title>Coming Soon | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <style>
+    body, html { height: 100%; }
+    .coming-soon-page {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0F172A 0%, #0a2318 40%, #0F172A 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--sp-8);
+      position: relative;
+      overflow: hidden;
+    }
+    .coming-soon-page::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,0.12) 0%, transparent 70%);
+    }
+    .coming-soon-page::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+    }
+    .countdown-grid {
+      display: flex;
+      gap: var(--sp-5);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: var(--sp-8) 0;
+    }
+    .countdown-unit {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5) var(--sp-6);
+      min-width: 90px;
+    }
+    .countdown-val {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 900;
+      color: #4ade80;
+      line-height: 1;
+      font-family: var(--font-mono);
+    }
+    .countdown-label {
+      font-size: var(--fs-xs);
+      color: rgba(255,255,255,0.50);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="coming-soon-page">
+  <!-- Background cycling image -->
+  <img src="https://images.pexels.com/photos/2128108/pexels-photo-2128108.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&dpr=1" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.07;z-index:0;">
+  <!-- Logo -->
+  <div style="position:relative;z-index:1;margin-bottom:var(--sp-8);">
+    <a href="home-community.html" style="display:inline-flex;align-items:center;gap:var(--sp-3);">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" style="height:48px;filter:brightness(0) invert(1);">
+    </a>
+  </div>
+
+  <!-- Content -->
+  <div style="position:relative;z-index:1;max-width:640px;">
+    <div class="hero__eyebrow" style="margin-bottom:var(--sp-5);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> Something is coming</div>
+    <h1 style="font-size:clamp(2.5rem,7vw,4rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:var(--sp-5);">
+      We're Getting Ready<br>for <span style="color:#4ade80;">Something Big</span>
+    </h1>
+    <p style="font-size:var(--fs-lg);color:rgba(255,255,255,0.70);line-height:var(--lh-relaxed);margin-bottom:var(--sp-8);">
+      VeloWorks is launching a new online booking platform, a members-only workshop series, and a guided cycling tours program. Be the first to know.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown-grid" id="countdown">
+      <div class="countdown-unit"><div class="countdown-val" id="cd-days">00</div><div class="countdown-label">Days</div></div>
+      <div class="countdown-unit"><div class="countdown-val" id="cd-hours">00</div><div class="countdown-label">Hours</div></div>
+      <div class="countdown-unit"><div class="countdown-val" id="cd-mins">00</div><div class="countdown-label">Minutes</div></div>
+      <div class="countdown-unit"><div class="countdown-val" id="cd-secs">00</div><div class="countdown-label">Seconds</div></div>
+    </div>
+
+    <!-- Email Signup -->
+    <form id="notifyForm" style="display:flex;gap:var(--sp-3);max-width:480px;margin:0 auto var(--sp-8);" novalidate>
+      <div style="flex:1;">
+        <label for="notifyEmail" class="sr-only">Your email address</label>
+        <input type="email" id="notifyEmail" class="form-control" placeholder="your@email.com" style="height:52px;font-size:var(--fs-base);" required>
+      </div>
+      <button type="submit" class="btn btn--primary" style="height:52px;padding:0 24px;white-space:nowrap;">Notify Me</button>
+    </form>
+
+    <!-- Social -->
+    <div style="display:flex;gap:var(--sp-4);justify-content:center;margin-bottom:var(--sp-10);">
+      <a href="#" class="social-link" aria-label="Instagram" style="border-color:rgba(255,255,255,0.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" class="social-link" aria-label="Facebook" style="border-color:rgba(255,255,255,0.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#" class="social-link" aria-label="YouTube" style="border-color:rgba(255,255,255,0.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+
+    <!-- Back to site -->
+    <div style="padding-top:var(--sp-6);border-top:1px solid rgba(255,255,255,0.10);">
+      <p style="font-size:var(--fs-sm);color:rgba(255,255,255,0.50);margin-bottom:var(--sp-4);">The shop is still open and we're still taking bookings!</p>
+      <div style="display:flex;gap:var(--sp-4);justify-content:center;flex-wrap:wrap;">
+        <a href="home-community.html" class="btn btn--outline-white">Back to Home</a>
+        <a href="bookings.html" class="btn btn--primary">Book a Service</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme toggle -->
+  <div style="position:absolute;top:var(--sp-5);right:var(--sp-5);z-index:2;">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);"><span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+  </div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script>
+  // Countdown to March 21, 2026
+  const launchDate = new Date('2026-03-21T09:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = launchDate - now;
+    if (diff <= 0) return;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  document.getElementById('notifyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('notifyEmail').value;
+    if (!email) return;
+    window.VeloWorks?.Toast?.show("You're on the list! We'll email you at " + email, 'success');
+    this.reset();
+  });
+</script>
+</body>
+</html>

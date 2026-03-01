@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Community | VeloWorks</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <style>
+        /* Specific Styles for Auth Page */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--sp-10);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.pexels.com/photos/1595483/pexels-photo-1595483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .auth-card {
+            background: var(--clr-bg); /* Adapts to Dark Mode */
+            width: 100%;
+            max-width: 450px;
+            padding: var(--sp-10);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            color: var(--clr-text);
+        }
+
+        .auth-header { text-align: center; margin-bottom: var(--sp-8); }
+        .auth-logo { width: 60px; margin-bottom: var(--sp-4); }
+        
+        .form-group { margin-bottom: var(--sp-5); }
+        .form-group label { display: block; margin-bottom: var(--sp-2); font-weight: 600; font-size: var(--fs-sm); }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            background: var(--clr-bg-alt);
+            color: var(--clr-text);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: var(--sp-6);
+            font-size: var(--fs-sm);
+            color: var(--clr-text-muted);
+        }
+        
+        .auth-switch a { color: var(--clr-primary); font-weight: 700; text-decoration: none; }
+        .auth-header a {
+    display: inline-block; /* Allows it to respond to text-align: center */
+    margin-bottom: var(--sp-4);
+}
+
+.auth-logo {
+    width: 160px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-card animate-fade-up">
+        <div class="auth-header">
+            <a href="home-community.html">
+                <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="auth-logo">
+            </a>
+            <h1 id="auth-title">Welcome Back</h1>
+            <p id="auth-subtitle">Ride on with the VeloWorks community.</p>
+        </div>
+
+        <form id="auth-form">
+            <div class="form-group signup-only" style="display: none;">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Marcus Chen">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="hello@rider.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg w-full" id="submit-btn">Sign In</button>
+        </form>
+
+        <div class="auth-switch">
+            <span id="switch-text">Don't have an account?</span>
+            <a href="#" id="toggle-auth">Create Account</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const authForm = document.getElementById('auth-form');
+    const toggleBtn = document.getElementById('toggle-auth');
+    const authTitle = document.getElementById('auth-title');
+    const authSub = document.getElementById('auth-subtitle');
+    const submitBtn = document.getElementById('submit-btn');
+    const signupFields = document.querySelectorAll('.signup-only');
+    const switchText = document.getElementById('switch-text');
+
+    let isLogin = true;
+
+    // --- 1. TOGGLE BETWEEN SIGN IN & SIGN UP ---
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
+
+        authTitle.innerText = isLogin ? 'Welcome Back' : 'Join the Crew';
+        authSub.innerText = isLogin ? 'Ride on with the VeloWorks community.' : 'Unlock member-only perks and event access.';
+        submitBtn.innerText = isLogin ? 'Sign In' : 'Create Account';
+        switchText.innerText = isLogin ? "Don't have an account?" : "Already a member?";
+        toggleBtn.innerText = isLogin ? 'Create Account' : 'Sign In';
+
+        signupFields.forEach(field => {
+            field.style.display = isLogin ? 'none' : 'block';
+        });
+    });
+
+    // --- 2. HANDLE THE ACTUAL LOGIN / REDIRECT ---
+    authForm.addEventListener('submit', (e) => {
+        // Stop the page from refreshing
+        e.preventDefault(); 
+
+        // Visual feedback: Change button state
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = isLogin ? 'Verifying...' : 'Registering...';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.disabled = true;
+
+        // Simulate a tiny delay (like a real server check)
+        setTimeout(() => {
+            // REDIRECT: Ensure this filename matches your main file exactly
+            window.location.href = 'home-community.html'; 
+        }, 800);
+    });
+</script>
+
+</body>
+</html>

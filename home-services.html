@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks Bike Shop — Expert bike repairs, premium rentals, service plans, and memberships. Book online, track your repair, rent in minutes.">
+  <title>Home – Services | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <style>
+    .services-hero {
+      background: linear-gradient(160deg, #0F172A 0%, #0a2318 50%, #0F172A 100%);
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: var(--sp-20) 0;
+    }
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -5%;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,0.15) 0%, transparent 65%);
+    }
+    .services-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.10) 0%, transparent 65%);
+    }
+    .service-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .how-step-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .how-step-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .step-icon-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-primary-light), rgba(74,222,128,0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto var(--sp-5);
+      border: 2px solid var(--clr-primary-light);
+    }
+    .pricing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-4) 0;
+      border-bottom: 1px solid var(--clr-border);
+      gap: var(--sp-4);
+    }
+    .pricing-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="home-community.html" class="header-logo">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <!-- NAV -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <!-- MOBILE ACTIONS (inside nav) -->
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+          <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+
+      <button class="action-icon-only" id="themeToggle">
+        <span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+
+      <button class="action-icon-only" id="langToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </button>
+
+      <!-- Desktop Buttons -->
+      <div class="desktop-only header-cta">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <!-- HERO — SERVICES FOCUSED (Dark, Bold) -->
+<section class="services-hero" aria-label="Services hero">
+  <div class="container" style="position:relative; z-index:1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    
+    <div style="max-width:780px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      
+      <div class="hero__eyebrow" style="margin-bottom:var(--sp-6);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Full-Service Bike Shop · Portland, OR</div>
+      
+      <h1 style="font-size:clamp(2.5rem,6vw,4.5rem); font-weight:900; color:#fff; line-height:1.05; letter-spacing:-0.03em; margin-bottom:var(--sp-5);">
+        Expert Repairs.<br>
+        <span style="color:#4ade80;">Premium Rentals.</span><br>
+        Genuine Service.
+      </h1>
+      
+      <p style="font-size:var(--fs-xl); color:rgba(255,255,255,0.72); line-height:var(--lh-relaxed); margin-bottom:var(--sp-8); max-width:52ch;">
+        From flat tires to full overhauls, we handle it all. Book online, drop off your bike, and track every step of the repair — right from your phone.
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:var(--sp-3); margin-bottom:var(--sp-8);">
+        <a href="repairs.html" class="service-pill" style="color:#4ade80; border-color:rgba(74,222,128,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Repairs &amp; Overhauls</a>
+        <a href="rentals.html" class="service-pill" style="color:#fb923c; border-color:rgba(251,146,60,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M14 17H5m9 0l-1-10m1 10h5M9 7l5 0m0 0l2 5m-2-5L9 7m0 0L7 7"/></svg> Bike Rentals</a>
+        <a href="membership.html" class="service-pill" style="color:#93c5fd; border-color:rgba(147,197,253,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg> Memberships</a>
+        <a href="bookings.html" class="service-pill" style="color:#d8b4fe; border-color:rgba(216,180,254,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Online Booking</a>
+      </div>
+
+      <div class="hero__actions" style="display: flex; justify-content: center; gap: var(--sp-4);">
+        <a href="bookings.html" class="btn btn--primary btn--xl">Book a Service Now</a>
+        <a href="repair-status.html" class="btn btn--outline-white btn--xl">Track My Repair</a>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:var(--sp-8); margin-top:var(--sp-12); padding-top:var(--sp-8); border-top:1px solid rgba(255,255,255,0.10); width: 100%;">
+      <div style="text-align: center;">
+        <span style="font-size:var(--fs-3xl); font-weight:900; color:#4ade80; display:block;" data-count="48">48</span>
+        <span style="font-size:var(--fs-sm); color:rgba(255,255,255,0.60);">Avg. Repair Turnaround (hrs)</span>
+      </div>
+      <div style="text-align: center;">
+        <span style="font-size:var(--fs-3xl); font-weight:900; color:#fb923c; display:block;" data-count="35">35</span>
+        <span style="font-size:var(--fs-sm); color:rgba(255,255,255,0.60);">Rental Bikes Available</span>
+      </div>
+      <div style="text-align: center;">
+        <span style="font-size:var(--fs-3xl); font-weight:900; color:#93c5fd; display:block;">$0</span>
+        <span style="font-size:var(--fs-sm); color:rgba(255,255,255,0.60);">Diagnostic Fee (Always)</span>
+      </div>
+      <div style="text-align: center;">
+        <span style="font-size:var(--fs-3xl); font-weight:900; color:#d8b4fe; display:block;">90-Day</span>
+        <span style="font-size:var(--fs-sm); color:rgba(255,255,255,0.60);">Parts & Labor Warranty</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CORE SERVICES GRID -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Our Services</div>
+        <h2 class="section__title">Everything Your Bike Needs</h2>
+        <p class="section__subtitle">Comprehensive bicycle services under one roof. Book online, drop off anytime during shop hours.</p>
+      </div>
+
+      <div class="grid grid--3 stagger" style="margin-top:var(--sp-12);">
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3 class="service-card__title">Repair & Maintenance</h3>
+          <p class="service-card__text">Full drivetrain service, brake overhaul, wheel truing, headset/bottom bracket replacement, electronic shifting calibration, custom builds.</p>
+          <ul style="margin-top:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);">
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Free diagnostic inspection</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> 90-day parts & labor warranty</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Real-time repair tracking</li>
+          </ul>
+          <a href="repairs.html" class="service-card__link">View Repair Services →</a>
+        </div>
+
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M14 17H5m9 0l-1-10m1 10h5M9 7l5 0m0 0l2 5m-2-5L9 7m0 0L7 7"/></svg></div>
+          <h3 class="service-card__title">Bike Rentals</h3>
+          <p class="service-card__text">Hourly, half-day, and full-day rentals of our premium fleet. Mountain, road, hybrid, e-bike, and cargo options — always maintained to shop-floor standard.</p>
+          <ul style="margin-top:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);">
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Helmet & lock included</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Online availability booking</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Member discounts up to 30%</li>
+          </ul>
+          <a href="rentals.html" class="service-card__link">Browse the Fleet →</a>
+        </div>
+
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg></div>
+          <h3 class="service-card__title">Annual Memberships</h3>
+          <p class="service-card__text">Three membership tiers from Spoke to Podium. Priority booking, discounted services, monthly tune-up credits, and exclusive member ride access.</p>
+          <ul style="margin-top:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);">
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Starting from $9/month</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Cancel anytime, no fees</li>
+            <li style="font-size:var(--fs-xs);color:var(--clr-text-muted);display:flex;align-items:center;gap:6px;"><span style="color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></span> Stackable with rental discounts</li>
+          </ul>
+          <a href="membership.html" class="service-card__link">See Membership Plans →</a>
+        </div>
+
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3 class="service-card__title">Online Repair Tracking</h3>
+          <p class="service-card__text">Drop off your bike and watch the repair progress in real time via your dashboard — from intake through diagnostic, parts order, and ready-to-collect notification.</p>
+          <a href="repair-status.html" class="service-card__link">Track a Repair →</a>
+        </div>
+
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <h3 class="service-card__title">Workshops & Clinics</h3>
+          <p class="service-card__text">Monthly DIY maintenance classes, fit clinics, beginner cycling skills, trail etiquette sessions, and hands-on group mechanic training.</p>
+          <a href="coming-soon.html" class="service-card__link">View Schedule →</a>
+        </div>
+
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="service-card__title">Bike Fitting Service</h3>
+          <p class="service-card__text">Professional bike fit by certified fitters. Saddle height, cleat position, handlebar reach — all dialed to prevent injury and maximize performance.</p>
+          <a href="bookings.html" class="service-card__link">Book a Fit →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Simple Process</div>
+        <h2 class="section__title">How to Book a Service</h2>
+        <p class="section__subtitle">From booking to pickup — we keep it simple so you can focus on riding.</p>
+      </div>
+
+      <div class="grid grid--3" style="margin-top:var(--sp-12);">
+        <div class="how-step-card animate-fade-up">
+          <div class="step-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--sp-2);">Step 01</div>
+          <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-3);">Book Online</h3>
+          <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);line-height:var(--lh-relaxed);">Choose your service type, pick a date and time slot, describe the issue, and confirm your booking in under 3 minutes.</p>
+        </div>
+
+        <div class="how-step-card animate-fade-up">
+          <div class="step-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--sp-2);">Step 02</div>
+          <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-3);">We Diagnose & Update</h3>
+          <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);line-height:var(--lh-relaxed);">Drop off your bike. Our mechanic runs a full diagnostic and sends you a real-time update with the findings and cost estimate before touching a single bolt.</p>
+        </div>
+
+        <div class="how-step-card animate-fade-up">
+          <div class="step-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--sp-2);">Step 03</div>
+          <h3 style="font-size:var(--fs-xl);font-weight:700;margin-bottom:var(--sp-3);">Pick Up & Ride</h3>
+          <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);line-height:var(--lh-relaxed);">We notify you the moment your bike is ready. Pick it up, pay in-store or online, and get a full breakdown of what was done — plain English, no jargon.</p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:var(--sp-10);">
+        <a href="bookings.html" class="btn btn--primary btn--lg">Start a Booking Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED RENTALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Featured Fleet</div>
+        <h2 class="section__title">Popular Rental Bikes</h2>
+        <p class="section__subtitle">All bikes maintained to showroom condition. Online booking available for all models.</p>
+      </div>
+
+      <div class="grid grid--4 stagger" style="margin-top:var(--sp-12);">
+        <article class="card animate-fade-up">
+          <div class="card__image">
+            <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=500&h=334&dpr=1" alt="Trail Blazer Mountain Bike" loading="lazy">
+            <span class="card__badge">Available Now</span>
+          </div>
+          <div class="card__body">
+            <div class="card__eyebrow">Mountain</div>
+            <h3 class="card__title">Trail Blazer MTB</h3>
+            <p class="card__text">Full suspension, 29" wheels, hydraulic brakes. Ready for Forest Park's toughest lines.</p>
+          </div>
+          <div class="card__footer">
+            <div>
+              <span class="card__price">$35</span>
+              <span class="card__price-label">/half day</span>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+          </div>
+        </article>
+
+        <article class="card animate-fade-up">
+          <div class="card__image">
+            <img src="https://images.pexels.com/photos/1595485/pexels-photo-1595485.jpeg?auto=compress&cs=tinysrgb&w=500&h=334&dpr=1" alt="Road Sprint 500" loading="lazy">
+            <span class="card__badge">Available Now</span>
+          </div>
+          <div class="card__body">
+            <div class="card__eyebrow">Road</div>
+            <h3 class="card__title">Road Sprint 500</h3>
+            <p class="card__text">Carbon fork, Shimano 105, 25mm slicks. Perfect for Columbia River Gorge rides.</p>
+          </div>
+          <div class="card__footer">
+            <div>
+              <span class="card__price">$40</span>
+              <span class="card__price-label">/half day</span>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+          </div>
+        </article>
+
+        <article class="card animate-fade-up">
+          <div class="card__image">
+            <img src="https://images.pexels.com/photos/1431117/pexels-photo-1431117.jpeg?auto=compress&cs=tinysrgb&w=500&h=334&dpr=1" alt="E-Commuter Pro electric bike" loading="lazy">
+            <span class="card__badge" style="background:var(--clr-secondary);"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Electric</span>
+          </div>
+          <div class="card__body">
+            <div class="card__eyebrow">Electric</div>
+            <h3 class="card__title">E-Commuter Pro</h3>
+            <p class="card__text">Bosch mid-drive motor, 80km range, integrated lights & rack. Portland's bridges, effortlessly.</p>
+          </div>
+          <div class="card__footer">
+            <div>
+              <span class="card__price">$55</span>
+              <span class="card__price-label">/half day</span>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+          </div>
+        </article>
+
+        <article class="card animate-fade-up">
+          <div class="card__image">
+            <img src="https://images.pexels.com/photos/212185/pexels-photo-212185.jpeg?auto=compress&cs=tinysrgb&w=500&h=334&dpr=1" alt="City Cruiser hybrid bike" loading="lazy">
+            <span class="card__badge">Available Now</span>
+          </div>
+          <div class="card__body">
+            <div class="card__eyebrow">City / Hybrid</div>
+            <h3 class="card__title">City Cruiser 7</h3>
+            <p class="card__text">7-speed Shimano, upright geometry, fenders and basket. The best way to explore Portland.</p>
+          </div>
+          <div class="card__footer">
+            <div>
+              <span class="card__price">$22</span>
+              <span class="card__price-label">/half day</span>
+            </div>
+            <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center" style="margin-top:var(--sp-8);">
+        <a href="rentals.html" class="btn btn--outline">View Full Rental Fleet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR PRICING GUIDE -->
+  <section class="section bg-alt">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <div class="eyebrow">Transparent Pricing</div>
+        <h2 class="section__title">Common Repair Costs</h2>
+        <p class="section__subtitle">No hidden fees. No upsells. Prices shown before we do anything. All labour includes our 90-day guarantee.</p>
+      </div>
+
+      <div style="margin-top:var(--sp-12);background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);overflow:hidden;">
+        <div style="padding:var(--sp-5) var(--sp-6);background:var(--clr-primary);color:#fff;display:flex;justify-content:space-between;">
+          <span style="font-weight:700;font-size:var(--fs-sm);">Service</span>
+          <span style="font-weight:700;font-size:var(--fs-sm);">Price Range</span>
+        </div>
+        <div style="padding:var(--sp-4) var(--sp-6);">
+          <div class="pricing-row"><span>Basic tune-up (adjust & lube)</span><strong>$45 – $65</strong></div>
+          <div class="pricing-row"><span>Flat tyre repair (tube replacement)</span><strong>$18 – $28</strong></div>
+          <div class="pricing-row"><span>Brake cable & housing replacement</span><strong>$30 – $55</strong></div>
+          <div class="pricing-row"><span>Brake pad replacement (per wheel)</span><strong>$20 – $40</strong></div>
+          <div class="pricing-row"><span>Gear cable & housing (full drivetrain)</span><strong>$55 – $80</strong></div>
+          <div class="pricing-row"><span>Chain replacement</span><strong>$22 – $45</strong></div>
+          <div class="pricing-row"><span>Cassette/freewheel replacement</span><strong>$40 – $90</strong></div>
+          <div class="pricing-row"><span>Bottom bracket service or swap</span><strong>$35 – $75</strong></div>
+          <div class="pricing-row"><span>Wheel true (minor)</span><strong>$20 – $35</strong></div>
+          <div class="pricing-row"><span>Full overhaul (disassemble, clean, rebuild)</span><strong>$120 – $200</strong></div>
+        </div>
+        <div style="padding:var(--sp-4) var(--sp-6);background:var(--clr-bg-muted);border-top:1px solid var(--clr-border);">
+          <p style="font-size:var(--fs-xs);color:var(--clr-text-muted);">* Prices are labour only. Parts quoted separately after free diagnostic. Member pricing available — up to 20% off labour.</p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:var(--sp-8);">
+        <a href="repairs.html" class="btn btn--primary">Book a Repair</a>
+        <a href="contact.html" class="btn btn--ghost" style="margin-left:var(--sp-3);">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="cta-banner__title">Your Bike Deserves the Best</h2>
+      <p class="cta-banner__sub">Book a service in under 3 minutes. Our calendar is live — pick your slot and we'll handle the rest.</p>
+      <div class="cta-banner__actions">
+        <a href="bookings.html" class="btn btn--outline-white btn--xl">Book a Service</a>
+        <a href="repair-status.html" class="btn btn--secondary btn--xl">Track Existing Repair</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="../assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010. Expert mechanics, quality rentals, and a community that loves cycling.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="home-community.html">Home</a></li>
+          <li><a href="rentals.html">Rentals</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="bookings.html">Booking</a></li>
+          <li><a href="dashboard-user.html">Dashboard</a></li>
+          <li><a href="membership.html">Memberships</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="coming-soon.html">Coming Soon</a></li>
+          <li><a href="404.html">404</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:hello@veloworks.com">hello@veloworks.com</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Sunday: Closed</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

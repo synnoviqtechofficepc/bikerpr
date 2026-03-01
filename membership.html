@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks Memberships — Spoke, Chainring, and Podium plans. Priority repairs, rental discounts, tune-up credits, and community access from $9/month.">
+  <title>Membership Plans | VeloWorks Bike Shop</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <style>
+    /* Container for the cards */
+.stagger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+  align-items: stretch; /* This forces children to be the same height */
+}
+
+/* The Card itself */
+.tier-card {
+  display: flex;
+  flex-direction: column; /* Stacks content vertically */
+  height: 100%;           /* Fills the grid cell */
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+}
+
+/* Push the button to the very bottom of the card */
+.tier-card .btn {
+  margin-top: auto; 
+}
+/* Target the specific paragraph after the grid */
+.section .container > p {
+  text-align: center;
+  margin-top: var(--sp-8);
+  max-width: 700px;    /* Optional: prevents the text from being too wide */
+  margin-left: auto;   /* Works with max-width to center the block */
+  margin-right: auto;  /* Works with max-width to center the block */
+  line-height: 1.6;
+}
+@media (max-width: 1024px) {
+  .stagger {
+    grid-template-columns: 1fr; /* Stack cards vertically on tablets/phones */
+    gap: var(--sp-6);
+  }
+  
+  .tier-card {
+    max-width: 450px; /* Optional: keeps cards from looking too stretched */
+    margin: 0 auto;   /* Centers the cards when stacked */
+  }
+}
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="home-community.html" class="header-logo">
+      <img src="../assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <!-- NAV -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <!-- MOBILE ACTIONS (inside nav) -->
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+          <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+
+      <button class="action-icon-only" id="themeToggle">
+        <span class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+
+      <button class="action-icon-only" id="langToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </button>
+
+      <!-- Desktop Buttons -->
+      <div class="desktop-only header-cta">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        <a href="bookings.html" class="btn btn--primary btn--sm">Book Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Membership</span></div>
+      </nav>
+      <h1 class="page-hero__title">Ride More, Pay Less</h1>
+      <p class="page-hero__subtitle">Three membership tiers built for every kind of rider — from the occasional weekend explorer to the committed year-round cyclist. Cancel anytime, no fuss.</p>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP TIERS -->
+  <section class="section">
+    <div class="container">
+      <!-- Billing Toggle -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:var(--sp-4);margin-bottom:var(--sp-10);">
+        <span style="font-size:var(--fs-sm);font-weight:600;color:var(--clr-text-muted);">Monthly</span>
+        <button id="billingToggle" style="width:52px;height:28px;border-radius:14px;background:var(--clr-primary);border:none;cursor:pointer;position:relative;transition:all 0.2s;" aria-label="Toggle annual billing">
+          <span id="billingKnob" style="position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.2s;"></span>
+        </button>
+        <span style="font-size:var(--fs-sm);font-weight:600;color:var(--clr-text-muted);">Annual <span class="badge badge--success" style="margin-left:4px;">Save 20%</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6);align-items:start;" class="stagger">
+
+        <!-- SPOKE -->
+        <div class="tier-card animate-fade-up">
+          <div class="tier-card__name"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tier-icon"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 1 1.5 4.7c-1.7.1-3.1-.2-4.2-.9C10 9 9.1 7.8 8.7 5.4c2.8-.4 4.6.1 5.4.6z"/></svg> Spoke</div>
+          <div class="tier-card__price">
+            <span class="tier-card__amount" id="spoke-price">$9</span>
+            <span class="tier-card__period">/month</span>
+          </div>
+          <p class="tier-card__desc">Perfect for casual riders who want a discount and peace of mind without commitment.</p>
+          <div class="tier-features">
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>10% off all repair labour</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>10% off all bike rentals</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>1 free flat tyre fix per month</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Access to member group rides</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Priority email support</div>
+            <div class="tier-feature"><div class="tier-feature__cross"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span style="opacity:0.5;">Tune-up credits</span></div>
+            <div class="tier-feature"><div class="tier-feature__cross"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span style="opacity:0.5;">Priority booking slots</span></div>
+            <div class="tier-feature"><div class="tier-feature__cross"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span style="opacity:0.5;">Parts purchase discount</span></div>
+          </div>
+          <a href="bookings.html" class="btn btn--outline btn--block">Get Started — Spoke</a>
+        </div>
+
+        <!-- CHAINRING (FEATURED) -->
+        <div class="tier-card tier-card--featured animate-fade-up">
+          <div class="tier-card__name"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tier-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Chainring</div>
+          <div class="tier-card__price">
+            <span class="tier-card__amount" id="chain-price">$19</span>
+            <span class="tier-card__period">/month</span>
+          </div>
+          <p class="tier-card__desc">The sweet spot for regular riders who want meaningful savings and premium service access.</p>
+          <div class="tier-features">
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>20% off all repair labour</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>20% off all bike rentals</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Unlimited flat tyre fixes</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>1 free tune-up credit per quarter</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Priority booking (48hr advance)</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Access to all workshops & clinics</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>10% off parts purchases</div>
+            <div class="tier-feature"><div class="tier-feature__cross"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span style="opacity:0.5;">Dedicated account manager</span></div>
+          </div>
+          <a href="bookings.html" class="btn btn--primary btn--block">Get Started — Chainring</a>
+        </div>
+
+        <!-- PODIUM -->
+        <div class="tier-card animate-fade-up">
+          <div class="tier-card__name"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tier-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg> Podium</div>
+          <div class="tier-card__price">
+            <span class="tier-card__amount" id="pod-price">$39</span>
+            <span class="tier-card__period">/month</span>
+          </div>
+          <p class="tier-card__desc">For the serious cyclist who demands the best — maximum discounts, VIP access, and a dedicated mechanic.</p>
+          <div class="tier-features">
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>30% off all repair labour</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>30% off all bike rentals</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Unlimited flat tyre fixes</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>1 free tune-up credit per month</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Priority booking (same-day slots)</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>All workshops & clinics free</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>15% off parts purchases</div>
+            <div class="tier-feature"><div class="tier-feature__check"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></div>Dedicated account mechanic</div>
+          </div>
+          <a href="bookings.html" class="btn btn--outline btn--block">Get Started — Podium</a>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:var(--sp-8);font-size:var(--fs-sm);color:var(--clr-text-muted);">All memberships include free cancellation anytime. No annual lock-ins on monthly plans. Price excludes parts costs.</p>
+    </div>
+  </section>
+
+  <!-- BENEFITS COMPARISON TABLE -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Side by Side</div>
+        <h2 class="section__title">Compare All Benefits</h2>
+      </div>
+      <div style="margin-top:var(--sp-10);overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);overflow:hidden;">
+          <thead>
+            <tr style="background:var(--clr-bg-muted);">
+              <th style="padding:var(--sp-4) var(--sp-6);text-align:left;font-size:var(--fs-sm);color:var(--clr-text-muted);font-weight:700;">Feature</th>
+              <th style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 1 1.5 4.7c-1.7.1-3.1-.2-4.2-.9C10 9 9.1 7.8 8.7 5.4c2.8-.4 4.6.1 5.4.6z"/></svg> Spoke</th>
+              <th style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:700;background:var(--clr-primary-light);color:var(--clr-primary-dark);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Chainring</th>
+              <th style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg> Podium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Repair labour discount</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">10%</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;background:rgba(22,163,74,0.04);color:var(--clr-primary);">20%</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">30%</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Rental discount</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">10%</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;background:rgba(22,163,74,0.04);color:var(--clr-primary);">20%</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">30%</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Free flat tyre fixes</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);">1 / month</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);background:rgba(22,163,74,0.04);color:var(--clr-primary);font-weight:600;">Unlimited</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">Unlimited</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Free tune-up credits</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-text-light);">—</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);background:rgba(22,163,74,0.04);">1 / quarter</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">1 / month</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Priority booking</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-text-light);">—</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);background:rgba(22,163,74,0.04);">48hrs advance</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">Same-day</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Parts discount</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-text-light);">—</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);background:rgba(22,163,74,0.04);">10%</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">15%</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Workshops & clinics</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);">Member rate</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);background:rgba(22,163,74,0.04);">Free access</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;font-size:var(--fs-sm);font-weight:600;">Free + early access</td>
+            </tr>
+            <tr style="border-top:1px solid var(--clr-border);">
+              <td style="padding:var(--sp-4) var(--sp-6);font-size:var(--fs-sm);">Dedicated mechanic</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-text-light);">—</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-text-light);background:rgba(22,163,74,0.04);">—</td>
+              <td style="padding:var(--sp-4) var(--sp-6);text-align:center;color:var(--clr-success);font-size:var(--fs-lg);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Members Love It</div>
+        <h2 class="section__title">What Our Members Say</h2>
+      </div>
+      <div class="grid grid--3 stagger" style="margin-top:var(--sp-10);">
+        <div class="testimonial-card animate-fade-up">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">The Chainring plan pays for itself after just two tune-ups. I've been a member for two years and I'd never go back to paying full price. The priority booking alone is worth it during busy season.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Tom A." class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Tom A.</div>
+              <div class="testimonial-role">Chainring Member · 2 Years</div>
+              <div class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-fade-up">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Podium membership means Lena knows my bike by name. Last month she noticed my BB was starting to creek before I even mentioned it. That's the level of care you can't put a price on.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/1133742/pexels-photo-1133742.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Nina W." class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Nina W.</div>
+              <div class="testimonial-role">Podium Member · 3 Years</div>
+              <div class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-fade-up">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Started on Spoke to test it out. Upgraded to Chainring after month two. The rental discount alone covers the membership fee if you rent even once a month — and I rent every weekend.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Chris D." class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Chris D.</div>
+              <div class="testimonial-role">Chainring Member · 8 Months</div>
+              <div class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-alt">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="section__title">Membership Questions</h2>
+      </div>
+      <div style="margin-top:var(--sp-10);">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">Can I cancel my membership anytime? <span class="accordion-icon">+</span></button>
+          <div class="accordion-body"><div class="accordion-content">Yes — monthly memberships can be cancelled at any time with no cancellation fee. Annual memberships can be cancelled but are non-refundable after the first 14 days.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">Can I upgrade or downgrade my plan? <span class="accordion-icon">+</span></button>
+          <div class="accordion-body"><div class="accordion-content">Absolutely. You can upgrade immediately and the difference is prorated. Downgrades take effect at the start of your next billing cycle.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">Do discounts apply to parts as well as labour? <span class="accordion-icon">+</span></button>
+          <div class="accordion-body"><div class="accordion-content">Chainring and Podium members get 10–15% off parts purchases made in-store. The repair labour discounts apply to labour costs; parts are quoted separately at trade + our markup.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">Is membership available for businesses or cycling clubs? <span class="accordion-icon">+</span></button>
+          <div class="accordion-body"><div class="accordion-content">Yes! We offer fleet accounts for businesses, clubs, and courier companies. Contact us for custom pricing on 5+ bike memberships.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">How do I use my tune-up credits? <span class="accordion-icon">+</span></button>
+          <div class="accordion-body"><div class="accordion-content">Tune-up credits are automatically applied to your account each month/quarter. When you book a basic or standard tune-up, select "Use Credit" during checkout. Credits don't roll over — use them before the next cycle.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="cta-banner__title">Join Over 4,200 VeloWorks Members</h2>
+      <p class="cta-banner__sub">Start with Spoke for just $9/month. Upgrade, downgrade, or cancel whenever you like.</p>
+      <div class="cta-banner__actions">
+        <a href="bookings.html" class="btn btn--outline-white btn--xl">Join Now</a>
+        <a href="contact.html" class="btn btn--secondary btn--xl">Talk to Us First</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="../assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+  // Billing toggle
+  let isAnnual = false;
+  const prices = { spoke: [9, 7], chain: [19, 15], pod: [39, 31] };
+  document.getElementById('billingToggle').addEventListener('click', function() {
+    isAnnual = !isAnnual;
+    const knob = document.getElementById('billingKnob');
+    knob.style.left = isAnnual ? '28px' : '4px';
+    document.getElementById('spoke-price').textContent = '$' + prices.spoke[isAnnual ? 1 : 0];
+    document.getElementById('chain-price').textContent = '$' + prices.chain[isAnnual ? 1 : 0];
+    document.getElementById('pod-price').textContent = '$' + prices.pod[isAnnual ? 1 : 0];
+  });
+</script>
+</body>
+</html>
