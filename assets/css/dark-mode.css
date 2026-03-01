@@ -1,0 +1,897 @@
+/* ============================================================
+   VeloWorks — Dark Mode Stylesheet
+   Calm, readable, low-eye-strain dark theme
+   ============================================================ */
+
+[data-theme="dark"] {
+  /* Brand stays consistent, but adjusted */
+  --clr-primary:        #4ade80;
+  --clr-primary-dark:   #22c55e;
+  --clr-primary-hover:  #16a34a;
+  --clr-primary-light:  rgba(74, 222, 128, 0.12);
+  --clr-primary-alpha:  rgba(74, 222, 128, 0.10);
+  --clr-secondary:      #fb923c;
+  --clr-secondary-dark: #f97316;
+  --clr-secondary-light: rgba(251, 146, 60, 0.15);
+
+  /* Background & Surface */
+  --clr-bg:         #0D1117;
+  --clr-bg-alt:     #161B22;
+  --clr-bg-muted:   #1C2333;
+  --clr-surface:    #1E2634;
+  --clr-border:     #2D3748;
+  --clr-border-dark:#3D4F65;
+  --clr-overlay:    rgba(0, 0, 0, 0.75);
+
+  /* Text */
+  --clr-text:        #E2E8F0;
+  --clr-text-mid:    #CBD5E1;
+  --clr-text-muted:  #94A3B8;
+  --clr-text-light:  #64748B;
+  --clr-text-invert: #0D1117;
+
+  /* Header */
+  --header-bg: #161B22;
+
+  /* Shadows adjusted for dark */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.40), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.65);
+  --shadow-primary: 0 4px 20px rgba(74, 222, 128, 0.20);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.40);
+
+  /* Dashboard */
+  --sidebar-bg: #0D1117;
+}
+
+/* ── Global body ── */
+[data-theme="dark"] body {
+  color-scheme: dark;
+}
+
+/* ── Selection ── */
+[data-theme="dark"] ::selection {
+  background-color: rgba(74, 222, 128, 0.25);
+  color: #4ade80;
+}
+
+/* ── Header ── */
+[data-theme="dark"] .site-header {
+  background-color: var(--header-bg);
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .site-header.scrolled {
+  background-color: rgba(22, 27, 34, 0.95);
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: var(--clr-primary);
+  background-color: var(--clr-primary-alpha);
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background-color: #1E2634;
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .dropdown-link {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .dropdown-link:hover {
+  background-color: var(--clr-primary-alpha);
+  color: var(--clr-primary);
+}
+
+[data-theme="dark"] .dropdown-link .dropdown-icon {
+  background-color: rgba(74, 222, 128, 0.12);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background-color: #1C2333;
+  border-color: var(--clr-border);
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background-color: var(--clr-primary-alpha);
+  border-color: var(--clr-primary);
+}
+
+[data-theme="dark"] .hamburger {
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .hamburger span {
+  background-color: var(--clr-text);
+}
+
+[data-theme="dark"] .hamburger:hover {
+  background-color: var(--clr-bg-muted);
+}
+
+/* ── Buttons Dark ── */
+[data-theme="dark"] .btn--outline {
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+[data-theme="dark"] .btn--ghost {
+  color: var(--clr-text-muted);
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .btn--ghost:hover {
+  background-color: var(--clr-bg-muted);
+  color: var(--clr-text);
+}
+
+/* ── Cards ── */
+[data-theme="dark"] .card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .tier-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .booking-item,
+[data-theme="dark"] .widget,
+[data-theme="dark"] .accordion-item {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .service-card:hover,
+[data-theme="dark"] .testimonial-card:hover {
+  border-color: var(--clr-border-dark);
+}
+
+[data-theme="dark"] .card__title,
+[data-theme="dark"] .service-card__title,
+[data-theme="dark"] .tier-card__amount {
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .card__text,
+[data-theme="dark"] .service-card__text {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .card__footer,
+[data-theme="dark"] .widget__header {
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .service-card__icon {
+  background-color: rgba(74, 222, 128, 0.12);
+}
+
+[data-theme="dark"] .stat-card {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .stat-card__value {
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .stat-card__trend--up {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+[data-theme="dark"] .stat-card__trend--down {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+}
+
+/* ── Tier Featured Card ── */
+[data-theme="dark"] .tier-card--featured {
+  background: linear-gradient(160deg, rgba(74, 222, 128, 0.08) 0%, var(--clr-surface) 60%);
+  border-color: var(--clr-primary);
+}
+
+[data-theme="dark"] .tier-feature__check {
+  background-color: rgba(74, 222, 128, 0.15);
+}
+
+[data-theme="dark"] .tier-feature__cross {
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* ── Forms ── */
+[data-theme="dark"] .form-control {
+  background-color: #161B22;
+  border-color: var(--clr-border);
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .form-control:hover {
+  border-color: var(--clr-border-dark);
+}
+
+[data-theme="dark"] .form-control:focus {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.12);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--clr-text-light);
+}
+
+[data-theme="dark"] .form-label {
+  color: var(--clr-text-mid);
+}
+
+[data-theme="dark"] .form-check-input {
+  border-color: var(--clr-border-dark);
+  background-color: #161B22;
+}
+
+[data-theme="dark"] .form-check-label {
+  color: var(--clr-text-mid);
+}
+
+/* ── Timeline ── */
+[data-theme="dark"] .timeline__step:not(:last-child)::after {
+  background-color: var(--clr-border);
+}
+
+[data-theme="dark"] .timeline__step.done:not(:last-child)::after,
+[data-theme="dark"] .timeline__step.active:not(:last-child)::after {
+  background-color: var(--clr-primary);
+}
+
+[data-theme="dark"] .timeline__node {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .timeline__step.done .timeline__node {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #0D1117;
+}
+
+[data-theme="dark"] .timeline__step.active .timeline__node {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+
+[data-theme="dark"] .vtimeline::before {
+  background-color: var(--clr-border);
+}
+
+[data-theme="dark"] .vtimeline__dot {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .vtimeline__item.done .vtimeline__dot {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+[data-theme="dark"] .vtimeline__item.active .vtimeline__dot {
+  border-color: var(--clr-primary);
+  background-color: var(--clr-surface);
+}
+
+/* ── Tabs ── */
+[data-theme="dark"] .tabs-nav {
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .tab-btn {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .tab-btn:hover {
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .tab-btn.active {
+  color: var(--clr-primary);
+  border-bottom-color: var(--clr-primary);
+}
+
+/* ── Accordion ── */
+[data-theme="dark"] .accordion-trigger {
+  color: var(--clr-text);
+  background-color: var(--clr-surface);
+}
+
+[data-theme="dark"] .accordion-trigger:hover {
+  background-color: var(--clr-bg-muted);
+}
+
+[data-theme="dark"] .accordion-content {
+  color: var(--clr-text-muted);
+}
+
+/* ── Booking UI ── */
+[data-theme="dark"] .time-slot {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+  color: var(--clr-text-mid);
+}
+
+[data-theme="dark"] .time-slot:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+
+[data-theme="dark"] .time-slot.unavailable {
+  background-color: var(--clr-bg-muted);
+  color: var(--clr-text-light);
+}
+
+[data-theme="dark"] .booking-calendar {
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .calendar-header {
+  background-color: var(--clr-bg-muted);
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .calendar-header-cell {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .calendar-cell {
+  border-color: var(--clr-border);
+  color: var(--clr-text-mid);
+}
+
+[data-theme="dark"] .calendar-cell:hover:not(.disabled):not(.other-month) {
+  background-color: var(--clr-primary-alpha);
+  color: var(--clr-primary);
+}
+
+[data-theme="dark"] .calendar-cell.other-month {
+  color: var(--clr-text-light);
+}
+
+[data-theme="dark"] .service-select-card {
+  border-color: var(--clr-border);
+  background-color: var(--clr-surface);
+  color: var(--clr-text);
+}
+
+[data-theme="dark"] .service-select-card.selected {
+  border-color: var(--clr-primary);
+  background-color: var(--clr-primary-alpha);
+}
+
+[data-theme="dark"] .service-select-card__radio {
+  border-color: var(--clr-border-dark);
+}
+
+/* ── Dashboard ── */
+[data-theme="dark"] .dashboard-main {
+  background-color: var(--clr-bg);
+}
+
+/* Make page-content padding-top gap seamlessly match header in dark mode */
+[data-theme="dark"] .page-content:has(.dashboard-layout) {
+  background-color: var(--header-bg);
+}
+
+[data-theme="dark"] .dashboard-topbar {
+  background-color: var(--clr-bg);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+[data-theme="dark"] .dashboard-sidebar {
+  background-color: #0D1117;
+  border-right: 1px solid var(--clr-border);
+}
+
+[data-theme="dark"] .sidebar-header {
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .sidebar-nav-link {
+  color: rgba(255,255,255,0.55);
+}
+
+[data-theme="dark"] .sidebar-nav-link:hover,
+[data-theme="dark"] .sidebar-nav-link.active {
+  color: #fff;
+}
+
+[data-theme="dark"] .sidebar-nav-link.active {
+  background-color: var(--clr-primary);
+  color: #0D1117;
+}
+
+[data-theme="dark"] .repair-ticket {
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .booking-item {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+
+[data-theme="dark"] .booking-item__date {
+  background-color: rgba(74, 222, 128, 0.10);
+}
+
+[data-theme="dark"] .booking-item__day,
+[data-theme="dark"] .booking-item__month {
+  color: var(--clr-primary);
+}
+
+[data-theme="dark"] .invoice-table th {
+  color: var(--clr-text-muted);
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .invoice-table td {
+  color: var(--clr-text-mid);
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .invoice-table tr:hover td {
+  background-color: var(--clr-bg-alt);
+}
+
+/* ── Section backgrounds ── */
+[data-theme="dark"] .bg-alt {
+  background-color: var(--clr-bg-alt);
+}
+
+/* ── Process steps ── */
+[data-theme="dark"] .process-step__num {
+  box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.10);
+}
+
+/* ── Breadcrumb ── */
+[data-theme="dark"] .breadcrumb__link {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .breadcrumb__current {
+  color: var(--clr-text);
+}
+
+/* ── Badges ── */
+[data-theme="dark"] .badge--success { background-color: rgba(34, 197, 94, 0.15); color: #4ade80; }
+[data-theme="dark"] .badge--warning { background-color: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+[data-theme="dark"] .badge--error   { background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+[data-theme="dark"] .badge--info    { background-color: rgba(59, 130, 246, 0.15); color: #93c5fd; }
+[data-theme="dark"] .badge--neutral { background-color: var(--clr-bg-muted); color: var(--clr-text-muted); }
+[data-theme="dark"] .badge--primary { background-color: rgba(74, 222, 128, 0.12); color: var(--clr-primary); }
+
+/* ── Alerts ── */
+[data-theme="dark"] .alert--success {
+  background-color: rgba(34, 197, 94, 0.08);
+  color: #4ade80;
+}
+
+[data-theme="dark"] .alert--warning {
+  background-color: rgba(245, 158, 11, 0.08);
+  color: #fcd34d;
+}
+
+[data-theme="dark"] .alert--error {
+  background-color: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .alert--info {
+  background-color: rgba(59, 130, 246, 0.08);
+  color: #93c5fd;
+}
+
+/* ── Page hero ── */
+[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, #0D1117 0%, #0a2318 100%);
+}
+
+/* ── Testimonials ── */
+[data-theme="dark"] .testimonial-quote {
+  color: rgba(74, 222, 128, 0.20);
+}
+
+[data-theme="dark"] .testimonial-text {
+  color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .testimonial-author {
+  border-top-color: var(--clr-border);
+}
+
+/* ── Repair progress ── */
+[data-theme="dark"] .repair-progress {
+  background-color: var(--clr-bg-muted);
+}
+
+/* ── Spec list ── */
+[data-theme="dark"] .spec-row {
+  border-bottom-color: var(--clr-border);
+}
+
+[data-theme="dark"] .spec-key { color: var(--clr-text-muted); }
+[data-theme="dark"] .spec-value { color: var(--clr-text); }
+
+/* ── Toast ── */
+[data-theme="dark"] .toast {
+  background-color: #1E2634;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+}
+
+/* ── Mobile nav ── */
+[data-theme="dark"] .main-nav.open {
+  background-color: var(--clr-surface);
+  border-top-color: var(--clr-border);
+}
+
+/* ── Skeleton ── */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg,
+    var(--clr-bg-muted) 25%,
+    var(--clr-border) 37%,
+    var(--clr-bg-muted) 63%
+  );
+}
+
+/* ── Logo in dark mode ── */
+[data-theme="dark"] .header-logo .logo-img {
+  filter: brightness(0) invert(1);
+}
+
+/* ── Filter bar (Rentals page) ── */
+[data-theme="dark"] .filter-btn {
+  background: none;
+  border-color: var(--clr-border);
+  color: var(--clr-text-muted);
+}
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .filter-btn.active {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #0D1117;
+}
+
+/* ── Rental cards (Rentals page) ── */
+[data-theme="dark"] .rental-card {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+[data-theme="dark"] .rental-card:hover {
+  border-color: var(--clr-border-dark);
+}
+[data-theme="dark"] .rental-card__body { color: var(--clr-text); }
+[data-theme="dark"] .rental-card__footer { border-color: var(--clr-border); }
+
+/* ── How-it-works step cards (Home Services page) ── */
+[data-theme="dark"] .how-step-card {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+  color: var(--clr-text);
+}
+
+/* ── Mobile nav (dark mode open state) ── */
+[data-theme="dark"] .main-nav.open {
+  background-color: var(--clr-surface);
+  border-top-color: var(--clr-primary);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+[data-theme="dark"] .main-nav.open .nav-link {
+  color: var(--clr-text-mid);
+}
+[data-theme="dark"] .main-nav.open .nav-link:hover,
+[data-theme="dark"] .main-nav.open .nav-link.active {
+  color: var(--clr-primary);
+  background-color: var(--clr-primary-alpha);
+}
+[data-theme="dark"] .main-nav.open .dropdown-menu {
+  background-color: var(--clr-bg-muted);
+  border-color: var(--clr-border);
+}
+[data-theme="dark"] .main-nav.open .dropdown-link {
+  color: var(--clr-text-muted);
+}
+[data-theme="dark"] .main-nav.open .dropdown-link:hover {
+  color: var(--clr-primary);
+  background-color: var(--clr-primary-alpha);
+}
+
+/* ── Saved bike cards (Dashboard) ── */
+[data-theme="dark"] .saved-bike-card {
+  background-color: var(--clr-bg-muted);
+  border-color: var(--clr-border);
+  color: var(--clr-text);
+}
+[data-theme="dark"] .saved-bike-thumb {
+  border-color: var(--clr-border);
+}
+
+/* ── Booking sidebar card (Bookings / Rental Details) ── */
+[data-theme="dark"] .booking-sidebar-card {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+[data-theme="dark"] .sticky-booking-card {
+  background-color: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+
+/* ── Section backgrounds with inline styles ── */
+[data-theme="dark"] .section { background-color: var(--clr-bg); }
+[data-theme="dark"] .bg-alt  { background-color: var(--clr-bg-alt); }
+
+/* ── Accordion trigger text visibility ── */
+[data-theme="dark"] .accordion-trigger { color: var(--clr-text); }
+
+/* ── Invoice table mobile card style in dark mode ── */
+[data-theme="dark"] .invoice-table tr {
+  border-color: var(--clr-border);
+  background-color: var(--clr-surface);
+}
+[data-theme="dark"] .invoice-table td {
+  border-bottom-color: var(--clr-border);
+}
+
+/* ── Progress step indicator (Bookings page) ── */
+[data-theme="dark"] .ps-item { color: var(--clr-text-muted); }
+[data-theme="dark"] .ps-item.active { color: var(--clr-primary); }
+[data-theme="dark"] .ps-item.done { color: var(--clr-success); }
+[data-theme="dark"] .ps-line { background-color: var(--clr-border); }
+[data-theme="dark"] .ps-num {
+  border-color: var(--clr-border);
+  color: var(--clr-text-muted);
+}
+
+/* ── Spec rows in rental details ── */
+[data-theme="dark"] .spec-row { border-bottom-color: var(--clr-border); }
+
+/* ── Review cards in rental details ── */
+[data-theme="dark"] .rental-review-card {
+  background-color: var(--clr-bg-alt);
+  border-color: var(--clr-border);
+}
+
+/* ── Buttons: improved visibility in dark mode ── */
+[data-theme="dark"] .btn--primary {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #0D1117;
+}
+[data-theme="dark"] .btn--primary:hover {
+  background-color: var(--clr-primary-dark);
+  border-color: var(--clr-primary-dark);
+  color: #0D1117;
+}
+[data-theme="dark"] .btn--secondary {
+  background-color: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+  color: #0D1117;
+}
+[data-theme="dark"] .btn--outline:hover {
+  background-color: var(--clr-primary);
+  color: #0D1117;
+}
+
+/* System preference fallback (when no toggle used) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --clr-primary:        #4ade80;
+    --clr-primary-dark:   #22c55e;
+    --clr-primary-light:  rgba(74, 222, 128, 0.12);
+    --clr-primary-alpha:  rgba(74, 222, 128, 0.10);
+    --clr-secondary:      #fb923c;
+    --clr-bg:         #0D1117;
+    --clr-bg-alt:     #161B22;
+    --clr-bg-muted:   #1C2333;
+    --clr-surface:    #1E2634;
+    --clr-border:     #2D3748;
+    --clr-border-dark:#3D4F65;
+    --clr-text:        #E2E8F0;
+    --clr-text-mid:    #CBD5E1;
+    --clr-text-muted:  #94A3B8;
+    --clr-text-light:  #64748B;
+    --header-bg: #161B22;
+    --sidebar-bg: #0D1117;
+    color-scheme: dark;
+  }
+}
+/* Ensure the header has a solid background when scrolling in dark mode */
+[data-theme="dark"] .site-header {
+  background-color: #1a1a1a; /* Pick a deep dark gray/black */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Force the hamburger bars to be white/light in dark mode */
+[data-theme="dark"] .hamburger span {
+  background-color: #ffffff !important;
+}
+
+/* Ensure the mobile menu itself is visible against the dark background */
+[data-theme="dark"] .main-nav {
+  background-color: #121212;
+  color: #ffffff;
+}
+[data-theme="dark"] .header--scrolled {
+  background-color: #000000 !important; /* Solid black on scroll */
+}
+/* 1. Ensure the header has a solid dark background when scrolling */
+[data-theme="dark"] .site-header.header-scrolled, 
+[data-theme="dark"] .site-header:not([style*="background: transparent"]) {
+  background-color: #121212 !important; /* Solid dark grey/black */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid #333;
+}
+
+/* 2. Fix the Hamburger Icon (The 3 lines) */
+[data-theme="dark"] .hamburger span {
+  background-color: #FFFFFF !important; /* Force lines to stay white */
+}
+
+/* 3. Fix the Navigation Links visibility */
+[data-theme="dark"] .nav-link, 
+[data-theme="dark"] .dropdown-trigger {
+  color: #FFFFFF !important;
+}
+
+/* 4. Ensure it stays on top of all other content */
+.site-header {
+  z-index: 9999 !important;
+}
+
+
+/* Ensure the hamburger lines are visible white */
+[data-theme="dark"] .hamburger span {
+    background-color: #ffffff !important;
+}
+
+/* Ensure the icons and text don't turn black on scroll */
+[data-theme="dark"] .nav-link, 
+[data-theme="dark"] .theme-icon,
+[data-theme="dark"] .dropdown-arrow {
+    color: #ffffff !important;
+}
+
+/* ===============================
+   DARK HEADER — CLEAN FIX
+================================ */
+[data-theme="dark"] .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #0f141b; /* solid dark */
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* On scroll */
+[data-theme="dark"] .site-header.scrolled {
+  background: #0b0f14;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* Remove weird green glow line */
+[data-theme="dark"] .site-header::after {
+  display: none !important;
+}
+
+/* Fix header icons in dark mode */
+[data-theme="dark"] .site-header .nav-link,
+[data-theme="dark"] .site-header .theme-icon,
+[data-theme="dark"] .site-header .dropdown-arrow {
+  color: #ffffff;
+}
+
+/* Hamburger bars */
+[data-theme="dark"] .hamburger span {
+  background: #ffffff;
+}
+
+/* Logo alignment */
+[data-theme="dark"] .header-logo {
+  filter: brightness(0) invert(1);
+}
+/* Mobile menu panel */
+[data-theme="dark"] .main-nav.open {
+  background: #11161d;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+[data-theme="dark"] .dashboard-sidebar {
+  background: linear-gradient(180deg, #0c1117, #070b10);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
+}
+
+/* ==============================
+   DARK MODE MOBILE NAV REAL FIX
+================================ */
+@media (max-width: 1024px) {
+
+  /* Break nav out of header layout */
+  [data-theme="dark"] .main-nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* THIS fixes your bug */
+    background: #11161d;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+  }
+
+  [data-theme="dark"] .main-nav.open {
+    transform: translateX(0);
+  }
+
+}
+[data-theme="dark"] .mobile-nav-top {
+  background: #0f141b;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .mobile-nav-controls button {
+  background: #161b22;
+  color: #fff;
+}
+/* ===============================
+   DARK MODE — HAMBURGER FIX
+================================ */
+[data-theme="dark"] .hamburger {
+  background: rgba(255,255,255,0.06); /* subtle glass look */
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+}
+
+[data-theme="dark"] .hamburger:hover {
+  background: rgba(74, 222, 128, 0.15);
+  border-color: var(--clr-primary);
+}
+
+/* Hamburger lines */
+[data-theme="dark"] .hamburger span {
+  background: #ffffff;
+}
+/* Dark mode sidebar overlay */
+[data-theme="dark"] .sidebar-overlay {
+  background: rgba(0,0,0,0.6);
+}
+/* ===== FIX: Dark mode navbar bottom gap / spacing issue ===== */
+[data-theme="dark"] body {
+  background-color: #0b1220 !important; /* main dashboard bg */
+}
+
+[data-theme="dark"] .page-content {
+  background-color: #0b1220 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make header visually blend with content */
+[data-theme="dark"] .site-header {
+  background: #0b1220 !important;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+/* Remove any accidental extra spacing from layout wrappers */
+[data-theme="dark"] .dashboard-layout,
+[data-theme="dark"] .dashboard-main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
