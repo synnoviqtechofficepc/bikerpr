@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks Bike Repairs — Expert diagnostics, drivetrain service, wheel truing, brake overhaul, and full bicycle overhauls. Free diagnostic. 90-day warranty. Book online.">
+  <title>Bike Repairs | VeloWorks Bike Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script id="theme-toggle-fixed">
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggleBtn = document.getElementById("themeToggle");
+  const icon = document.getElementById("themeIcon");
+  const root = document.documentElement;
+
+  // Load saved theme
+  let theme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", theme);
+  updateIcon(theme);
+
+  toggleBtn.addEventListener("click", () => {
+    theme = theme === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    updateIcon(theme);
+  });
+
+  function updateIcon(theme) {
+    if (theme === "dark") {
+      icon.className = "ph ph-sun";   // ☀️
+    } else {
+      icon.className = "ph ph-moon";  // 🌙
+    }
+  }
+
+});
+</script>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <a href="home-community.html" class="header-logo">
+      <img src="assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+<i class="ph" id="themeIcon"></i>      </button>
+
+      <button class="rtl-toggle" id="langToggle" aria-label="Toggle RTL layout">
+        <i class="ph ph-translate"></i>
+      </button>
+
+      <div class="desktop-only header-cta" style="display: flex; gap: 16px;">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+      </div>
+
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img src="https://images.pexels.com/photos/5808011/pexels-photo-5808011.jpeg?auto=compress&cs=tinysrgb&w=1600&h=600&dpr=1" alt="VeloWorks mechanic repairing a bicycle" style="width:100%;height:100%;object-fit:cover;opacity:0.18;">
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Repairs</span></div>
+      </nav>
+      <h1 class="page-hero__title">Bike Repairs Done Right</h1>
+      <p class="page-hero__subtitle">Free diagnostic. Fixed-price quotes before we touch anything. 90-day parts & labour warranty. Book online and drop off at your convenience.</p>
+      <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-6);flex-wrap:wrap;">
+        <a href="bookings.html" class="btn btn--primary btn--lg">Book a Repair</a>
+        <a href="repair-status.html" class="btn btn--outline-white">Track Existing Repair →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR VISUAL -->
+<section style="padding: var(--sp-16) 0; background: var(--clr-bg);">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-12); align-items: center;">
+      
+      <div style="position: relative;">
+        <img src="https://images.pexels.com/photos/10263877/pexels-photo-10263877.jpeg?auto=compress&cs=tinysrgb&w=700&h=500&dpr=1" 
+             alt="Certified mechanic" 
+             style="border-radius: var(--radius-xl); width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; box-shadow: var(--shadow-xl);" 
+             loading="lazy">
+      </div>
+
+      <div style="max-width: 520px;">
+        <div class="eyebrow" style="color: var(--clr-primary); font-weight: 700; margin-bottom: var(--sp-2);">Expert Care</div>
+        <h2 style="font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: var(--sp-4);">
+          Certified Mechanics, <br>Real Results
+        </h2>
+        <p style="color: var(--clr-text-muted); line-height: 1.6; margin-bottom: var(--sp-6); font-size: var(--fs-md);">
+          Every repair is handled by a certified mechanic with a minimum of 5 years professional experience. We use manufacturer-grade tools and genuine parts.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4);">
+          <div style="padding: var(--sp-4); background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-lg); border-left: 4px solid var(--clr-primary);">
+            <div style="font-size: var(--fs-2xl); font-weight: 900; color: var(--clr-text); line-height: 1;">48h</div>
+            <div style="font-size: var(--fs-xs); color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Avg. Turnaround</div>
+          </div>
+          <div style="padding: var(--sp-4); background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-lg); border-left: 4px solid var(--clr-primary);">
+            <div style="font-size: var(--fs-2xl); font-weight: 900; color: var(--clr-text); line-height: 1;">$0</div>
+            <div style="font-size: var(--fs-xs); color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Diagnostic Fee</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- TRUST PILLARS -->
+  <section style="padding:var(--sp-10) 0;background:var(--clr-surface);border-bottom:1px solid var(--clr-border);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-6);">
+        <div style="text-align:center;">
+          <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Free Diagnostic</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">We check before you commit</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 0 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Fixed Quotes</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">Price locked before work starts</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Live Tracking</div>
+          <div style="font-size:var(--clr-text-muted);font-size:var(--fs-xs);margin-top:4px;">Watch your repair in real-time</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="margin-bottom:var(--sp-2);"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">90-Day Warranty</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">Parts & labour guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR SERVICES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Repair Services</div>
+        <h2 class="section__title">What We Fix</h2>
+        <p class="section__subtitle">From a simple flat to a full competition overhaul — our certified mechanics handle it all.</p>
+      </div>
+
+      <div class="grid grid--3 stagger" style="margin-top:var(--sp-12);">
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h3 class="service-card__title">Drivetrain Service</h3>
+          <p class="service-card__text">Chain replacement, cassette swap, derailleur adjustment and cable replacement, front and rear. Includes full clean and lubrication.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $45</span>
+            <span style="color:var(--clr-text-muted);"> labour</span>
+          </div>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><rect x="9" y="9" width="6" height="6"/></svg></div>
+          <h3 class="service-card__title">Brake System Overhaul</h3>
+          <p class="service-card__text">Cable, housing, and pad replacement for mechanical brakes. Hydraulic bleed, hose replacement, and rotor truing for disc systems.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $30</span>
+            <span style="color:var(--clr-text-muted);"> per wheel</span>
+          </div>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3 class="service-card__title">Wheel Service</h3>
+          <p class="service-card__text">True and tension adjustment, spoke replacement, rim tape, tubeless setup, tyre fitting, valve replacement.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $20</span>
+            <span style="color:var(--clr-text-muted);"> per wheel</span>
+          </div>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></div>
+          <h3 class="service-card__title">Flat Tyre Repair</h3>
+          <p class="service-card__text">Tube replacement, tyre inspection for embedded debris, thorn-resistant liners fitted on request. Road-side or workshop.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $18</span>
+            <span style="color:var(--clr-text-muted);"> incl. tube</span>
+          </div>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+          <h3 class="service-card__title">Full Overhaul</h3>
+          <p class="service-card__text">Complete disassembly, ultrasonic cleaning, bearing overhaul, cable replacement, re-grease, full reassembly and precision adjustment.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $120</span>
+            <span style="color:var(--clr-text-muted);"> labour</span>
+          </div>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3 class="service-card__title">Electronic Shifting</h3>
+          <p class="service-card__text">Di2, AXS, Campagnolo EPS calibration, firmware update, junction box service, battery replacement. Bosch & Shimano eMTB systems.</p>
+          <div style="margin-top:var(--sp-4);font-size:var(--fs-sm);">
+            <span style="font-weight:700;color:var(--clr-primary);">From $65</span>
+            <span style="color:var(--clr-text-muted);"> per session</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR PROCESS -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">The Repair Journey</div>
+        <h2 class="section__title">From Drop-off to Ready — Tracked Every Step</h2>
+        <p class="section__subtitle">Every repair goes through our 5-stage process. You'll get a notification at each stage via email or SMS.</p>
+      </div>
+
+      <div style="margin-top:var(--sp-12);">
+        <div class="timeline" role="list" aria-label="Repair process stages">
+          <div class="timeline__step done" role="listitem">
+            <div class="timeline__node" aria-label="Stage complete"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="timeline__label">Intake<div class="timeline__date">Drop-off</div></div>
+          </div>
+          <div class="timeline__step done" role="listitem">
+            <div class="timeline__node" aria-label="Stage complete"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="timeline__label">Diagnostic<div class="timeline__date">Free check</div></div>
+          </div>
+          <div class="timeline__step active" role="listitem">
+            <div class="timeline__node" aria-label="Current stage">3</div>
+            <div class="timeline__label">In Progress<div class="timeline__date">Being fixed</div></div>
+          </div>
+          <div class="timeline__step" role="listitem">
+            <div class="timeline__node" aria-label="Upcoming stage">4</div>
+            <div class="timeline__label">Quality Check<div class="timeline__date">Test ride</div></div>
+          </div>
+          <div class="timeline__step" role="listitem">
+            <div class="timeline__node" aria-label="Upcoming stage">5</div>
+            <div class="timeline__label">Ready<div class="timeline__date">Come pick up!</div></div>
+          </div>
+        </div>
+
+        <div class="alert alert--info" style="margin-top:var(--sp-8);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <div>
+            <strong>Real-Time Notifications:</strong> Get SMS and email updates at every stage. You'll never need to call to check on your bike.
+            <a href="repair-status.html" style="margin-left:var(--sp-3);font-weight:700;">Track a Repair →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR REQUEST FORM -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <div class="eyebrow">Request a Repair</div>
+        <h2 class="section__title">Tell Us About Your Bike</h2>
+        <p class="section__subtitle">Fill in this form and we'll prepare for your drop-off. A mechanic will confirm your appointment within 2 hours.</p>
+      </div>
+
+      <div id="repairConfirmation" style="display:none;" class="alert alert--success">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-primary)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <strong>Request Submitted!</strong><br>
+          Your repair ticket is <strong data-ticket-num>#TKT-XXXXX</strong>. We'll confirm your drop-off time within 2 hours. Check your email.
+          <br><a href="repair-status.html" style="margin-top:var(--sp-3);display:inline-block;font-weight:700;">Track this repair →</a>
+        </div>
+      </div>
+
+      <form id="repairRequestForm" style="margin-top:var(--sp-10);display:flex;flex-direction:column;gap:var(--sp-5);" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="repFirstName" class="form-label">First Name <span class="required">*</span></label>
+            <input type="text" id="repFirstName" class="form-control" placeholder="Jordan" required>
+          </div>
+          <div class="form-group">
+            <label for="repLastName" class="form-label">Last Name <span class="required">*</span></label>
+            <input type="text" id="repLastName" class="form-control" placeholder="Rivera" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="repEmail" class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="repEmail" class="form-control" placeholder="jordan@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="repPhone" class="form-label">Phone</label>
+            <input type="tel" id="repPhone" class="form-control" placeholder="(503) 555-0100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bikeMake" class="form-label">Bike Make & Model <span class="required">*</span></label>
+            <input type="text" id="bikeMake" class="form-control" placeholder="Trek Marlin 7" required>
+          </div>
+          <div class="form-group">
+            <label for="bikeYear" class="form-label">Bike Year (approx.)</label>
+            <input type="text" id="bikeYear" class="form-control" placeholder="2022">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="serviceType" class="form-label">Service Type <span class="required">*</span></label>
+          <select id="serviceType" class="form-control form-select" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Basic Tune-Up</option>
+            <option>Flat Tyre Repair</option>
+            <option>Brake Service</option>
+            <option>Drivetrain Service</option>
+            <option>Wheel Truing</option>
+            <option>Full Overhaul</option>
+            <option>Electronic Shifting</option>
+            <option>eBike Service</option>
+            <option>Custom / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="urgency" class="form-label">Service Priority</label>
+          <select id="urgency" name="urgency" class="form-control form-select">
+            <option value="routine">Routine (3–5 days)</option>
+            <option value="priority">Priority (1–2 days, +25%)</option>
+            <option value="emergency">Emergency (same-day, call us)</option>
+          </select>
+          <p class="urgency-hint form-hint">Standard turnaround: 3–5 business days.</p>
+        </div>
+        <div class="form-group">
+          <label for="issueDesc" class="form-label">Describe the Problem <span class="required">*</span></label>
+          <textarea id="issueDesc" class="form-control" rows="4" placeholder="E.g. Front derailleur is skipping under load, especially on climbs. Chain seems worn. Rear brake feels spongy..." required></textarea>
+        </div>
+        <div>
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" required>
+            <span class="form-check-label">I agree to the <a href="#">Repair Terms</a> and understand the free diagnostic will be provided before any work begins.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg">Submit Repair Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="cta-banner__title">Not Sure What Your Bike Needs?</h2>
+      <p class="cta-banner__sub">Bring it in, we'll check it for free and tell you exactly what it needs — no sales pressure, no guesswork.</p>
+      <div class="cta-banner__actions">
+        <a href="contact.html" class="btn btn--outline-white btn--xl">Call Us First</a>
+        <a href="repair-status.html" class="btn btn--secondary btn--xl">Track a Repair</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Community | VeloWorks</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
+      <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Specific Styles for Auth Page */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--sp-10);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.pexels.com/photos/1595483/pexels-photo-1595483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .auth-card {
+            background: var(--clr-bg);
+            width: 100%;
+            max-width: 450px;
+            min-height: 680px; /* Fixed height to prevent jumping */
+            padding: var(--sp-10);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            color: var(--clr-text);
+            
+            /* Flex layout to keep content distributed evenly */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .auth-header { text-align: center; margin-bottom: var(--sp-8); }
+        .auth-logo { width: 160px; height: auto; display: block; margin: 0 auto var(--sp-4); }
+        
+        .form-group { margin-bottom: var(--sp-5); position: relative; }
+        .form-group label { display: block; margin-bottom: var(--sp-2); font-weight: 600; font-size: var(--fs-sm); }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            padding-right: 45px; /* Space for eye icon */
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            background: var(--clr-bg-alt);
+            color: var(--clr-text);
+        }
+
+        /* Password Specifics */
+        .password-container { position: relative; }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--clr-text-muted);
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .forgot-password-link {
+            display: block;
+            text-align: right;
+            margin-top: 8px;
+            font-size: var(--fs-xs);
+            color: var(--clr-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Social Logins */
+        .social-auth { margin-bottom: var(--sp-8); }
+        .social-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: var(--sp-4);
+        }
+        .btn--social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: var(--fs-sm);
+            transition: background 0.2s;
+        }
+        .btn--social:hover { background: var(--clr-bg-alt); }
+        
+        .divider {
+            text-align: center;
+            margin: var(--sp-6) 0;
+            position: relative;
+        }
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--clr-border);
+            z-index: 1;
+        }
+        .divider span {
+            position: relative;
+            z-index: 2;
+            background: var(--clr-bg);
+            padding: 0 12px;
+            color: var(--clr-text-muted);
+            font-size: var(--fs-xs);
+            text-transform: uppercase;
+        }
+
+        /* Layout distribution */
+        #auth-form {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #submit-btn {
+            margin-top: auto; /* Pushes the button to the bottom of the available space */
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: var(--sp-6);
+            font-size: var(--fs-sm);
+            color: var(--clr-text-muted);
+        }
+        .auth-switch a { color: var(--clr-primary); font-weight: 700; text-decoration: none; }
+        
+        /* Hides the default Microsoft Edge/IE password reveal button */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-card animate-fade-up">
+        <div class="auth-header">
+            <a href="home-community.html">
+                <img src="assets/icons/bike-logo.svg" alt="VeloWorks" class="auth-logo">
+            </a>
+            <h1 id="auth-title">Welcome Back</h1>
+            <p id="auth-subtitle">Ride on with the VeloWorks community.</p>
+        </div>
+
+        <div class="social-auth">
+            <div class="social-btns">
+                <button class="btn--social">
+                    <i class="ph ph-google-logo"></i> Google
+                </button>
+                <button class="btn--social">
+                    <i class="ph ph-apple-logo"></i> Apple
+                </button>
+            </div>
+            <div class="divider"><span>Or continue with email</span></div>
+        </div>
+
+        <form id="auth-form">
+            <div class="form-group signup-only" style="display: none;">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Marcus Chen">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="hello@rider.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <button type="button" class="toggle-password" id="pw-toggle">
+                        <i class="ph ph-eye" id="eye-icon"></i>
+                    </button>
+                </div>
+                <a href="#" class="forgot-password-link" id="forgot-link">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg w-full" id="submit-btn">Sign In</button>
+        </form>
+
+        <div class="auth-switch">
+            <span id="switch-text">Don't have an account?</span>
+            <a href="#" id="toggle-auth">Create Account</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const authForm = document.getElementById('auth-form');
+    const toggleBtn = document.getElementById('toggle-auth');
+    const authTitle = document.getElementById('auth-title');
+    const authSub = document.getElementById('auth-subtitle');
+    const submitBtn = document.getElementById('submit-btn');
+    const signupFields = document.querySelectorAll('.signup-only');
+    const switchText = document.getElementById('switch-text');
+    const forgotLink = document.getElementById('forgot-link');
+    
+    // Password Toggle Logic
+    const passwordInput = document.getElementById('password');
+    const pwToggleBtn = document.getElementById('pw-toggle');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    pwToggleBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        // Toggle icon classes
+        eyeIcon.classList.toggle('ph-eye');
+        eyeIcon.classList.toggle('ph-eye-slash');
+    });
+
+    let isLogin = true;
+
+    // --- 1. TOGGLE BETWEEN SIGN IN & SIGN UP ---
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
+
+        authTitle.innerText = isLogin ? 'Welcome Back' : 'Join the Crew';
+        authSub.innerText = isLogin ? 'Ride on with the VeloWorks community.' : 'Unlock member-only perks and event access.';
+        submitBtn.innerText = isLogin ? 'Sign In' : 'Create Account';
+        switchText.innerText = isLogin ? "Don't have an account?" : "Already a member?";
+        toggleBtn.innerText = isLogin ? 'Create Account' : 'Sign In';
+
+        // Using visibility to prevent the card from resizing when the link vanishes
+        forgotLink.style.visibility = isLogin ? 'visible' : 'hidden';
+        forgotLink.style.opacity = isLogin ? '1' : '0';
+
+        signupFields.forEach(field => {
+            field.style.display = isLogin ? 'none' : 'block';
+        });
+    });
+
+    // --- 2. HANDLE SUBMISSION ---
+    authForm.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        submitBtn.innerText = isLogin ? 'Verifying...' : 'Registering...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            window.location.href = 'home-community.html'; 
+        }, 800);
+    });
+</script>
+
+</body>
+</html>

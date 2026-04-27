@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About VeloWorks — Founded in 2010, we're Portland's passionate team of cyclist-mechanics. Meet the crew, learn our story, and find out what drives us.">
+  <title>About Us | VeloWorks Bike Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<script id="theme-toggle-fixed">
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggleBtn = document.getElementById("themeToggle");
+  const icon = document.getElementById("themeIcon");
+  const root = document.documentElement;
+
+  // Load saved theme
+  let theme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", theme);
+  updateIcon(theme);
+
+  toggleBtn.addEventListener("click", () => {
+    theme = theme === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    updateIcon(theme);
+  });
+
+  function updateIcon(theme) {
+    if (theme === "dark") {
+      icon.className = "ph ph-sun";   // ☀️
+    } else {
+      icon.className = "ph ph-moon";  // 🌙
+    }
+  }
+
+});
+</script>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <a href="home-community.html" class="header-logo">
+      <img src="assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+<i class="ph" id="themeIcon"></i>      </button>
+
+      <button class="rtl-toggle" id="langToggle" aria-label="Toggle RTL layout">
+        <i class="ph ph-translate"></i>
+      </button>
+
+      <div class="desktop-only header-cta" style="display: flex; gap: 16px;">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+      </div>
+
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">About Us</span></div>
+      </nav>
+      <h1 class="page-hero__title">Built on Two Wheels,<br>Driven by Community</h1>
+      <p class="page-hero__subtitle">The story of VeloWorks — where we came from, what we believe, and the team that makes it happen every day.</p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16);align-items:center;">
+        <div>
+          <div class="eyebrow">Our Story</div>
+          <h2 style="font-size:var(--fs-4xl);font-weight:800;margin-bottom:var(--sp-5);">From a Garage to Portland's Most Trusted Shop</h2>
+          <p style="color:var(--clr-text-muted);line-height:var(--lh-relaxed);margin-bottom:var(--sp-4);">In 2010, Marcus Chen converted a two-car garage on Spoke Lane into a one-man repair shop. His tools were second-hand. His espresso machine was not. He had one rule: treat every bike as if it were your own.</p>
+          <p style="color:var(--clr-text-muted);line-height:var(--lh-relaxed);margin-bottom:var(--sp-4);">Word spread fast. Within two years, VeloWorks had moved into its current 4,000 sq ft home, and the team had grown to six mechanics — each a passionate rider in their own right.</p>
+          <p style="color:var(--clr-text-muted);line-height:var(--lh-relaxed);margin-bottom:var(--sp-8);">Today we're 14 strong, serving over 4,200 active members, maintaining a 35-bike rental fleet, and hosting monthly community rides. The garage is gone. The rule never changed.</p>
+          <div class="alert alert--success">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+            <div>
+              <strong>Best Bike Shop — Portland Magazine 2022, 2023, 2024</strong><br>
+              <span style="font-size:var(--fs-xs);">Voted by Portland's cycling community three years running.</span>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <img src="https://images.pexels.com/photos/5808018/pexels-photo-5808018.jpeg?auto=compress&cs=tinysrgb&w=700&h=875&dpr=1" alt="Inside VeloWorks shop floor" style="border-radius:var(--radius-xl);width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:var(--shadow-xl);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">What We Stand For</div>
+        <h2 class="section__title">Our Values</h2>
+        <p class="section__subtitle">Three things guide every decision we make at VeloWorks — from how we wrench to how we talk to customers.</p>
+      </div>
+      <div class="grid grid--3 stagger" style="margin-top:var(--sp-12);">
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg></div>
+          <h3 class="service-card__title">Radical Honesty</h3>
+          <p class="service-card__text">We'll never recommend a service your bike doesn't need. Our diagnostic is always free, and the quote is always fixed before any work begins. No surprises on pickup.</p>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h3 class="service-card__title">Technical Excellence</h3>
+          <p class="service-card__text">Every mechanic holds certification from at least one major brand. We invest in ongoing training, the right tools, and the time to do each job properly — not quickly.</p>
+        </div>
+        <div class="service-card animate-fade-up">
+          <div class="service-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 22c1-1 2.5-2 5-2 3 0 5 1.5 8 1.5 2.5 0 4-1 5-1.5"/><path d="M6.03 12C3.6 9.78 2 7.13 2 4c4.38.01 8.26 2.4 10.68 6.03"/></svg></div>
+          <h3 class="service-card__title">Local Commitment</h3>
+          <p class="service-card__text">1% of our gross revenue goes to maintaining Portland-area trails. We partner with Cycle Oregon and local land trusts to keep the places we love rideable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Meet the Team</div>
+        <h2 class="section__title">The People Behind Every Repair</h2>
+        <p class="section__subtitle">14 mechanics and staff, 80+ combined years of riding experience. We ride what we wrench.</p>
+      </div>
+      <div class="grid grid--4 stagger" style="margin-top:var(--sp-12);">
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Marcus Chen"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Marcus Chen</h3>
+            <div class="team-card__role">Founder & Head Mechanic</div>
+            <p class="team-card__bio">Certified Trek & Specialized. Ex-Cat 2 road racer. 20 years wrenching. Portland Cycling Hall of Fame 2023.</p>
+          </div>
+        </div>
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Lena Ortiz"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Lena Ortiz</h3>
+            <div class="team-card__role">Service Manager</div>
+            <p class="team-card__bio">PMBI certified trail builder. Enduro racer. Manages our repair workflow to zero-missed-deadline record.</p>
+          </div>
+        </div>
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/1102341/pexels-photo-1102341.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Jake Torres"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Jake Torres</h3>
+            <div class="team-card__role">Lead Rental Technician</div>
+            <p class="team-card__bio">14-mile daily commuter. Keeps 35 rental bikes at shop-floor condition. Electric bike specialist.</p>
+          </div>
+        </div>
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Amy Lin"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Amy Lin</h3>
+            <div class="team-card__role">Community Coordinator</div>
+            <p class="team-card__bio">Organizes rides, workshops, and trail days. Bikepacking obsessed. Your first friend at VeloWorks.</p>
+          </div>
+        </div>
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Ben Rivera"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Ben Rivera</h3>
+            <div class="team-card__role">Mechanic – Drivetrains</div>
+            <p class="team-card__bio">Di2 & AXS specialist. If it shifts electronically, Ben knows it inside out.</p>
+          </div>
+        </div>
+        <div class="team-card animate-fade-up">
+          <div class="team-card__photo"><img src="https://images.pexels.com/photos/1133742/pexels-photo-1133742.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" alt="Mia Kowalski"></div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Mia Kowalski</h3>
+            <div class="team-card__role">Fit Specialist</div>
+            <p class="team-card__bio">IBFI certified bike fitter. Former physiotherapist. Turns painful rides into perfect rides.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS & PARTNERS -->
+  <section class="section bg-alt">
+    <div class="container">
+      <div class="section__header">
+        <div class="eyebrow">Partners & Certifications</div>
+        <h2 class="section__title">We're Qualified to Touch Your Bike</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5);margin-top:var(--sp-12);">
+        <div style="padding:var(--sp-8);border:1px solid var(--clr-border);border-radius:var(--radius-lg);text-align:center;background:var(--clr-surface);">
+          <div style="margin-bottom:var(--sp-3);"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Trek Certified</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">Authorized Service Center</div>
+        </div>
+        <div style="padding:var(--sp-8);border:1px solid var(--clr-border);border-radius:var(--radius-lg);text-align:center;background:var(--clr-surface);">
+          <div style="margin-bottom:var(--sp-3);"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Specialized Premium</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">Authorized Dealer & Repair</div>
+        </div>
+        <div style="padding:var(--sp-8);border:1px solid var(--clr-border);border-radius:var(--radius-lg);text-align:center;background:var(--clr-surface);">
+          <div style="margin-bottom:var(--sp-3);"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Bosch eBike Systems</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">Certified Service Partner</div>
+        </div>
+        <div style="padding:var(--sp-8);border:1px solid var(--clr-border);border-radius:var(--radius-lg);text-align:center;background:var(--clr-surface);">
+          <div style="margin-bottom:var(--sp-3);"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 22c1-1 2.5-2 5-2 3 0 5 1.5 8 1.5 2.5 0 4-1 5-1.5"/><path d="M6.03 12C3.6 9.78 2 7.13 2 4c4.38.01 8.26 2.4 10.68 6.03"/></svg></div>
+          <div style="font-weight:700;font-size:var(--fs-sm);">Cycle Oregon Partner</div>
+          <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:4px;">1% Trail Fund Contributor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="cta-banner__title">Come Say Hello</h2>
+      <p class="cta-banner__sub">Visit us at 42 Spoke Lane, Portland. No appointment needed for a chat, coffee, or a quick bike check.</p>
+      <div class="cta-banner__actions">
+        <a href="contact.html" class="btn btn--outline-white btn--xl">Find Us</a>
+        <a href="bookings.html" class="btn btn--secondary btn--xl">Book a Service</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:hello@veloworks.com">hello@veloworks.com</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
