@@ -1,0 +1,445 @@
+/* ============================================================
+   VeloWorks — RTL (Right-to-Left) Stylesheet
+   Full support for Arabic, Hebrew, Farsi, Urdu, etc.
+   Usage: Add dir="rtl" to <html> element
+   ============================================================ */
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ── Typography ── */
+[dir="rtl"] p {
+  text-align: right;
+}
+
+/* ── Container ── */
+[dir="rtl"] .container {
+  direction: rtl;
+}
+
+/* ── Header ── */
+[dir="rtl"] .header-inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-logo {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .main-nav {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .nav-list {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .dropdown-link {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* ── Hero ── */
+[dir="rtl"] .hero__content {
+  text-align: right;
+}
+
+[dir="rtl"] .hero__eyebrow {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__stats {
+  flex-direction: row-reverse;
+}
+
+/* ── Page Hero ── */
+[dir="rtl"] .page-hero::before {
+  right: auto;
+  left: -10%;
+}
+
+/* ── Section headers ── */
+[dir="rtl"] .section__header {
+  text-align: right;
+}
+
+[dir="rtl"] .section__subtitle {
+  text-align: right;
+  margin-inline: 0;
+  margin-right: 0;
+}
+
+/* ── Cards ── */
+[dir="rtl"] .card__badge {
+  left: auto;
+  right: var(--sp-3);
+}
+
+[dir="rtl"] .card__body {
+  text-align: right;
+}
+
+[dir="rtl"] .card__footer {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .service-card {
+  text-align: right;
+}
+
+[dir="rtl"] .service-card::before {
+  transform-origin: right;
+}
+
+[dir="rtl"] .service-card__link {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .stat-card {
+  flex-direction: row-reverse;
+}
+
+/* ── Buttons ── */
+[dir="rtl"] .btn {
+  flex-direction: row-reverse;
+}
+
+/* ── Footer ── */
+[dir="rtl"] .footer-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .footer-logo {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-brand p,
+[dir="rtl"] .footer-links h4,
+[dir="rtl"] .footer-contact h4 {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-links ul {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .footer-links a {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-links a:hover {
+  transform: translateX(-4px);
+}
+
+[dir="rtl"] .footer-social {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-contact address p {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .footer-hours p {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-bottom {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-bottom-links {
+  flex-direction: row-reverse;
+}
+
+/* ── Breadcrumb ── */
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb__item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb__item:not(:last-child)::after {
+  content: '\\';
+}
+
+/* ── Timeline ── */
+[dir="rtl"] .timeline {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .timeline__step:not(:last-child)::after {
+  left: auto;
+  right: calc(50% + 18px);
+  left: calc(-50% + 18px);
+}
+
+/* Vertical Timeline */
+[dir="rtl"] .vtimeline {
+  padding-left: 0;
+  padding-right: var(--sp-10);
+}
+
+[dir="rtl"] .vtimeline::before {
+  left: auto;
+  right: 18px;
+}
+
+[dir="rtl"] .vtimeline__dot {
+  left: auto;
+  right: -37px;
+}
+
+[dir="rtl"] .vtimeline__title,
+[dir="rtl"] .vtimeline__meta,
+[dir="rtl"] .vtimeline__body {
+  text-align: right;
+}
+
+/* ── Forms ── */
+[dir="rtl"] .form-group {
+  text-align: right;
+}
+
+[dir="rtl"] .form-label {
+  text-align: right;
+}
+
+[dir="rtl"] .form-check {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .form-check-label {
+  text-align: right;
+}
+
+[dir="rtl"] .form-select {
+  background-position: left 12px center;
+  padding-left: 40px;
+  padding-right: 16px;
+}
+
+[dir="rtl"] .form-row {
+  direction: rtl;
+}
+
+/* ── Alerts ── */
+[dir="rtl"] .alert {
+  flex-direction: row-reverse;
+  border-left: none;
+  border-right: 4px solid;
+  text-align: right;
+}
+
+/* ── Accordion ── */
+[dir="rtl"] .accordion-trigger {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* ── Tabs ── */
+[dir="rtl"] .tabs-nav {
+  flex-direction: row-reverse;
+}
+
+/* ── Process Steps ── */
+[dir="rtl"] .process-steps {
+  direction: rtl;
+}
+
+[dir="rtl"] .process-steps::before {
+  left: calc(16.66% + 28px);
+  right: calc(16.66% + 28px);
+  transform: scaleX(-1);
+}
+
+/* ── Membership Tier ── */
+[dir="rtl"] .tier-card {
+  text-align: right;
+}
+
+[dir="rtl"] .tier-feature {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* ── Booking UI ── */
+[dir="rtl"] .booking-step-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .service-select-card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+[dir="rtl"] .time-slot-grid {
+  direction: rtl;
+}
+
+/* ── Dashboard ── */
+[dir="rtl"] .dashboard-layout {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dashboard-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--clr-border);
+}
+
+[dir="rtl"] .sidebar-user {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .sidebar-user > div {
+  text-align: right;
+}
+
+[dir="rtl"] .sidebar-nav-link {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+[dir="rtl"] .sidebar-nav-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .sidebar-nav-label {
+  text-align: right;
+}
+
+[dir="rtl"] .sidebar-logout {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+[dir="rtl"] .dashboard-topbar {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dashboard-welcome {
+  text-align: right;
+}
+
+[dir="rtl"] .widget__header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .widget__title {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .repair-ticket {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+[dir="rtl"] .booking-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .booking-item__title,
+[dir="rtl"] .booking-item__meta {
+  text-align: right;
+}
+
+/* ── Invoice Table ── */
+[dir="rtl"] .invoice-table {
+  direction: rtl;
+}
+
+[dir="rtl"] .invoice-table th,
+[dir="rtl"] .invoice-table td {
+  text-align: right;
+}
+
+/* ── Testimonials ── */
+[dir="rtl"] .testimonial-text {
+  text-align: right;
+}
+
+[dir="rtl"] .testimonial-author {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .testimonial-name,
+[dir="rtl"] .testimonial-role {
+  text-align: right;
+}
+
+/* ── Team Card ── */
+[dir="rtl"] .team-card__body {
+  text-align: right;
+}
+
+/* ── Gallery ── */
+[dir="rtl"] .gallery-grid {
+  direction: rtl;
+}
+
+/* ── Spec List ── */
+[dir="rtl"] .spec-row {
+  flex-direction: row-reverse;
+}
+
+/* ── Stat Card ── */
+[dir="rtl"] .stat-card__trend {
+  flex-direction: row-reverse;
+}
+
+/* ── Sidebar nav on mobile RTL ── */
+@media (max-width: 768px) {
+  [dir="rtl"] .main-nav.open .nav-list {
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .main-nav.open .dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+  }
+
+  [dir="rtl"] .hero__actions {
+    align-items: flex-start;
+  }
+
+  [dir="rtl"] .dashboard-layout {
+    flex-direction: column;
+  }
+}
+
+/* ── Utility overrides for RTL ── */
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .footer-links a:hover {
+  transform: translateX(-4px);
+}
+
+[dir="rtl"] .service-card__link:hover {
+  gap: var(--sp-3);
+}

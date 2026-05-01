@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book a bike repair, rental, fit session, or workshop at VeloWorks. Choose your service, pick a date, confirm in 3 steps.">
+  <title>Book a Service | VeloWorks Bike Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--sp-10);
+      align-items: start;
+    }
+    .booking-sidebar-card {
+      position: sticky;
+      top: calc(var(--header-height) + 24px);
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .progress-step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--sp-8);
+    }
+    .ps-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--clr-text-muted);
+    }
+    .ps-item.active { color: var(--clr-primary); }
+    .ps-item.done { color: var(--clr-success); }
+    .ps-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--fs-xs); font-weight: 700;
+      flex-shrink: 0;
+    }
+    .ps-item.active .ps-num { border-color: var(--clr-primary); color: var(--clr-primary); }
+    .ps-item.done .ps-num { border-color: var(--clr-success); background: var(--clr-success); color: #fff; }
+    .ps-line { flex: 1; height: 2px; background: var(--clr-border); margin: 0 var(--sp-2); }
+    .ps-item.done ~ .ps-line { background: var(--clr-success); }
+    @media (max-width:1024px) { .booking-layout { grid-template-columns: 1fr; } .booking-sidebar-card { position:static; } }
+    /* Tighten the top area */
+.page-content .section:first-of-type {
+  padding-top: var(--sp-4) !important; /* Reduces the large default section padding */
+}
+
+.breadcrumb {
+  margin-bottom: var(--sp-2) !important; /* Pulls the H1 closer to the breadcrumbs */
+}
+
+/* Optional: If the header itself has a bottom margin in your style.css */
+.site-header {
+  margin-bottom: 0 !important;
+}
+.booking-sidebar-card {
+  position: sticky;
+  top: var(--header-height); /* Removes the +24px offset */
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-top: 0; /* Ensures no top margin is pushing it down */
+}
+/* Tighten the dashboard layout */
+@media (min-width: 1025px) {
+  .dashboard-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* Aligns content directly next to sidebar */
+    gap: 0; /* Removes the gap entirely; use padding on main instead */
+  }
+
+  .dashboard-main {
+    flex: 1;
+    padding-left: var(--sp-8); /* Controlled spacing instead of a 'gap' */
+    max-width: 1200px; /* Prevents the content from stretching too far on ultrawide screens */
+  }
+}
+.booking-sidebar-column {
+  position: relative;
+}
+
+/* FIX: sticky without footer overlap */
+.booking-sidebar-sticky {
+  position: sticky;
+  top: calc(var(--header-height) + var(--sp-4));
+  align-self: start;
+}
+
+/* Prevent overlap on shorter screens */
+@media (max-height: 800px) {
+  .booking-sidebar-sticky {
+    position: relative;
+    top: auto;
+  }
+}
+.booking-layout {
+  align-items: start;
+}
+  </style>
+</head>
+<script id="theme-toggle-fixed">
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggleBtn = document.getElementById("themeToggle");
+  const icon = document.getElementById("themeIcon");
+  const root = document.documentElement;
+
+  // Load saved theme
+  let theme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", theme);
+  updateIcon(theme);
+
+  toggleBtn.addEventListener("click", () => {
+    theme = theme === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    updateIcon(theme);
+  });
+
+  function updateIcon(theme) {
+    if (theme === "dark") {
+      icon.className = "ph ph-sun";   // ☀️
+    } else {
+      icon.className = "ph ph-moon";  // 🌙
+    }
+  }
+
+});
+</script>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <a href="home-community.html" class="header-logo">
+      <img src="assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+<i class="ph" id="themeIcon"></i>      </button>
+
+      <button class="rtl-toggle" id="langToggle" aria-label="Toggle RTL layout">
+        <i class="ph ph-text-align-right"></i>
+      </button>
+
+      <div class="desktop-only header-cta" style="display: flex; gap: 16px;">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+      </div>
+
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+<main class="page-content">
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb__item"><a href="home-community.html" class="breadcrumb__link">Home</a></div>
+        <div class="breadcrumb__item"><span class="breadcrumb__current">Book a Service</span></div>
+      </nav>
+
+      <div style="margin-bottom:var(--sp-8);">
+        <h1 style="font-size:var(--fs-4xl);font-weight:900;margin-bottom:var(--sp-2);">Book a Service</h1>
+        <p style="color:var(--clr-text-muted);font-size:var(--fs-lg);">Three steps. Under 3 minutes. Instant confirmation.</p>
+      </div>
+
+      <!-- Step Progress -->
+      <div class="progress-step-indicator" id="progressSteps">
+        <div class="ps-item booking-progress-step active">
+          <div class="ps-num">1</div>
+          <span>Choose Service</span>
+        </div>
+        <div class="ps-line"></div>
+        <div class="ps-item booking-progress-step">
+          <div class="ps-num">2</div>
+          <span>Date & Time</span>
+        </div>
+        <div class="ps-line"></div>
+        <div class="ps-item booking-progress-step">
+          <div class="ps-num">3</div>
+          <span>Your Details</span>
+        </div>
+        <div class="ps-line"></div>
+        <div class="ps-item booking-progress-step">
+          <div class="ps-num">4</div>
+          <span>Confirm</span>
+        </div>
+      </div>
+
+      <div class="booking-layout">
+
+        <!-- LEFT: Booking Form -->
+        <div>
+          <!-- Confirmation -->
+          <div id="bookingConfirmation" style="display:none;text-align:center;padding:var(--sp-16) var(--sp-8);background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-xl);">
+            <div style="margin-bottom:var(--sp-5);"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-primary)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h2 style="font-size:var(--fs-3xl);font-weight:900;color:var(--clr-primary);margin-bottom:var(--sp-3);">Booking Confirmed!</h2>
+            <p style="font-size:var(--fs-lg);color:var(--clr-text-muted);margin-bottom:var(--sp-5);">Confirmation sent to your email.</p>
+            <div style="background:var(--clr-bg-alt);border-radius:var(--radius-lg);padding:var(--sp-5);display:inline-block;margin-bottom:var(--sp-8);">
+              <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-bottom:4px;">Booking Reference</div>
+              <div style="font-size:var(--fs-2xl);font-weight:900;font-family:var(--font-mono);" data-conf-num>#VW-XXXXXX</div>
+            </div>
+            <div style="display:flex;gap:var(--sp-4);justify-content:center;flex-wrap:wrap;">
+              <a href="dashboard-user.html" class="btn btn--primary btn--lg">View in Dashboard</a>
+              <a href="repair-status.html" class="btn btn--outline btn--lg">Track Status</a>
+            </div>
+          </div>
+
+          <form id="bookingForm" novalidate>
+
+            <!-- STEP 1: Service Selection -->
+            <div class="booking-form-step" id="step1">
+              <div class="booking-step-header">
+                <div class="booking-step-num">1</div>
+                <h2 class="booking-step-title">What do you need?</h2>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:var(--sp-4);" role="radiogroup" aria-label="Select service type">
+                <div class="service-select-card" data-service="Bike Repair" role="radio" tabindex="0" aria-checked="false">
+                  <div class="service-select-card__radio"></div>
+                  <div style="flex:1;">
+                    <h4 style="font-size:var(--fs-base);font-weight:700;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Bike Repair</h4>
+                    <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Tune-up, brake overhaul, drivetrain service, wheel truing, full overhaul, and more.</p>
+                  </div>
+                  <div style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);white-space:nowrap;">From $18</div>
+                </div>
+                <div class="service-select-card" data-service="Bike Rental" role="radio" tabindex="0" aria-checked="false">
+                  <div class="service-select-card__radio"></div>
+                  <div style="flex:1;">
+                    <h4 style="font-size:var(--fs-base);font-weight:700;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M14 17H5m9 0l-1-10m1 10h5M9 7l5 0m0 0l2 5m-2-5L9 7m0 0L7 7"/></svg> Bike Rental</h4>
+                    <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Hourly, half-day, and full-day rentals. Mountain, road, electric, city, gravel.</p>
+                  </div>
+                  <div style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);white-space:nowrap;">From $20</div>
+                </div>
+                <div class="service-select-card" data-service="Bike Fit" role="radio" tabindex="0" aria-checked="false">
+                  <div class="service-select-card__radio"></div>
+                  <div style="flex:1;">
+                    <h4 style="font-size:var(--fs-base);font-weight:700;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0L2.7 18.7c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4z"/><path d="m7.5 10.5 2 2"/><path d="m10.5 7.5 2 2"/><path d="m13.5 4.5 2 2"/><path d="m4.5 13.5 2 2"/></svg> Professional Bike Fit</h4>
+                    <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);">IBFI-certified fitting session. Saddle height, cleat position, reach, and stack.</p>
+                  </div>
+                  <div style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);white-space:nowrap;">$95</div>
+                </div>
+                <div class="service-select-card" data-service="Workshop" role="radio" tabindex="0" aria-checked="false">
+                  <div class="service-select-card__radio"></div>
+                  <div style="flex:1;">
+                    <h4 style="font-size:var(--fs-base);font-weight:700;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Workshop / Clinic</h4>
+                    <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Hands-on maintenance classes, beginner cycling skills, trail etiquette sessions.</p>
+                  </div>
+                  <div style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);white-space:nowrap;">From $25</div>
+                </div>
+                <div class="service-select-card" data-service="Membership Signup" role="radio" tabindex="0" aria-checked="false">
+                  <div class="service-select-card__radio"></div>
+                  <div style="flex:1;">
+                    <h4 style="font-size:var(--fs-base);font-weight:700;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg> Join as Member</h4>
+                    <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Start a Spoke, Chainring, or Podium membership today and save immediately.</p>
+                  </div>
+                  <div style="font-size:var(--fs-sm);font-weight:700;color:var(--clr-primary);white-space:nowrap;">From $9/mo</div>
+                </div>
+              </div>
+              <div style="margin-top:var(--sp-6);">
+                <button type="button" class="btn btn--primary btn--lg" data-next-step>Continue →</button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Date & Time -->
+            <div class="booking-form-step" style="display:none;" id="step2">
+              <div class="booking-step-header">
+                <div class="booking-step-num">2</div>
+                <h2 class="booking-step-title">Pick a Date & Time</h2>
+              </div>
+              <div style="margin-bottom:var(--sp-6);">
+                <h3 style="font-size:var(--fs-base);font-weight:700;margin-bottom:var(--sp-4);">Select a Date</h3>
+                <div class="booking-calendar"></div>
+              </div>
+              <div>
+                <h3 style="font-size:var(--fs-base);font-weight:700;margin-bottom:var(--sp-4);">
+                  Available Times
+                  <span style="font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-muted);">— <span data-selected-date>Select a date first</span></span>
+                </h3>
+                <div class="time-slot-grid" role="listbox" aria-label="Available time slots"></div>
+              </div>
+              <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-8);">
+                <button type="button" class="btn btn--ghost" data-prev-step>← Back</button>
+                <button type="button" class="btn btn--primary btn--lg" data-next-step>Continue →</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Your Details -->
+            <div class="booking-form-step" style="display:none;" id="step3">
+              <div class="booking-step-header">
+                <div class="booking-step-num">3</div>
+                <h2 class="booking-step-title">Your Details</h2>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookFirstName" class="form-label">First Name <span class="required">*</span></label>
+                    <input type="text" id="bookFirstName" class="form-control" placeholder="Jordan" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="bookLastName" class="form-label">Last Name <span class="required">*</span></label>
+                    <input type="text" id="bookLastName" class="form-control" placeholder="Rivera" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookEmail" class="form-label">Email <span class="required">*</span></label>
+                    <input type="email" id="bookEmail" class="form-control" placeholder="jordan@example.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="bookPhone" class="form-label">Phone</label>
+                    <input type="tel" id="bookPhone" class="form-control" placeholder="(503) 555-0100">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bookNotes" class="form-label">Notes for our team</label>
+                  <textarea id="bookNotes" class="form-control" rows="3" placeholder="Bike make/model, specific issues, questions…"></textarea>
+                </div>
+                <div>
+                  <label class="form-check">
+                    <input type="checkbox" class="form-check-input" required>
+                    <span class="form-check-label">I agree to the <a href="#">terms</a> and <a href="#">cancellation policy</a>.</span>
+                  </label>
+                </div>
+              </div>
+              <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-8);">
+                <button type="button" class="btn btn--ghost" data-prev-step>← Back</button>
+                <button type="button" class="btn btn--primary btn--lg" data-next-step>Review Booking →</button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Review & Confirm -->
+            <div class="booking-form-step" style="display:none;" id="step4">
+              <div class="booking-step-header">
+                <div class="booking-step-num">4</div>
+                <h2 class="booking-step-title">Review & Confirm</h2>
+              </div>
+              <div style="background:var(--clr-bg-alt);border-radius:var(--radius-xl);padding:var(--sp-6);margin-bottom:var(--sp-6);">
+                <h3 style="font-size:var(--fs-base);font-weight:700;margin-bottom:var(--sp-5);">Booking Summary</h3>
+                <table style="width:100%;border-collapse:collapse;">
+                  <tr><td style="padding:var(--sp-3) 0;color:var(--clr-text-muted);font-size:var(--fs-sm);width:120px;">Service</td><td style="font-weight:700;font-size:var(--fs-sm);" class="summary-service">—</td></tr>
+                  <tr><td style="padding:var(--sp-3) 0;color:var(--clr-text-muted);font-size:var(--fs-sm);">Date</td><td style="font-weight:700;font-size:var(--fs-sm);" class="summary-date">—</td></tr>
+                  <tr><td style="padding:var(--sp-3) 0;color:var(--clr-text-muted);font-size:var(--fs-sm);">Time</td><td style="font-weight:700;font-size:var(--fs-sm);" class="summary-time">—</td></tr>
+                  <tr><td style="padding:var(--sp-3) 0;color:var(--clr-text-muted);font-size:var(--fs-sm);">Location</td><td style="font-weight:700;font-size:var(--fs-sm);">VeloWorks — 42 Spoke Lane, Portland</td></tr>
+                </table>
+              </div>
+              <div class="alert alert--info" style="margin-bottom:var(--sp-6);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <div>No payment required now. Pay at the shop after your service. Free cancellation up to 24 hours before your appointment.</div>
+              </div>
+              <div style="display:flex;gap:var(--sp-4);">
+                <button type="button" class="btn btn--ghost" data-prev-step>← Edit</button>
+                <button type="submit" class="btn btn--primary btn--xl" style="flex:1;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><polyline points="20 6 9 17 4 12"/></svg> Confirm Booking</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+<div class="booking-sidebar-column">
+  <div class="booking-sidebar-sticky">
+    
+    <div class="booking-sidebar-card" style="margin-bottom: 0;">
+      <div style="padding:var(--sp-5); border-bottom:1px solid var(--clr-border); background:var(--clr-bg-alt);">
+        <h3 style="font-size:var(--fs-sm); font-weight:700; color:var(--clr-text-muted); text-transform:uppercase; letter-spacing:0.08em;">Booking Summary</h3>
+      </div>
+      
+      <div style="padding:var(--sp-5);">
+        <div style="display:flex; flex-direction:column; gap:var(--sp-4);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:var(--fs-sm); color:var(--clr-text-muted);">Service:</span>
+            <span style="font-size:var(--fs-sm); font-weight:600;" data-selected-service>Not selected</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:var(--fs-sm); color:var(--clr-text-muted);">Date:</span>
+            <span style="font-size:var(--fs-sm); font-weight:600;" data-selected-date>Not selected</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:var(--fs-sm); color:var(--clr-text-muted);">Time:</span>
+            <span style="font-size:var(--fs-sm); font-weight:600;" data-selected-time>Not selected</span>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--sp-6); padding-top:var(--sp-5); border-top:1px solid var(--clr-border);">
+          <div style="display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--clr-text-muted); margin-bottom:var(--sp-2);">
+            <span>Deposit due today:</span><span>$0.00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-weight:800; font-size:var(--fs-base);">
+            <span>Pay at shop:</span><span style="color:var(--clr-primary);">Variable</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:var(--sp-5); border-top:1px solid var(--clr-border); background:var(--clr-bg-alt);">
+        <p style="font-size:var(--fs-xs); color:var(--clr-text-muted); display:flex; align-items:flex-start; gap:6px;"><span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>Need help? <a href="contact.html" style="font-weight:700;">Call us</a></p>
+        <p style="font-size:var(--fs-xs); color:var(--clr-text-muted); display:flex; align-items:flex-start; gap:6px; margin-top:var(--sp-2);"><span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Free cancellation up to 24 hours before</p>
+        <p style="font-size:var(--fs-xs); color:var(--clr-text-muted); display:flex; align-items:flex-start; gap:6px; margin-top:var(--sp-2);"><span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>Members save 10–30% on all services</p>
+      </div>
+    </div>
+
+    <div class="booking-trust-block" style="background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-xl); padding: var(--sp-5);">
+      <div class="trust-item" style="display: flex; gap: var(--sp-3); margin-bottom: var(--sp-4); align-items: flex-start;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span style="font-size: var(--fs-xs); line-height: 1.4;"><strong>Secure Booking:</strong> Your data is protected. No payment required until the service is done.</span>
+      </div>
+      <div class="trust-item" style="display: flex; gap: var(--sp-3); margin-bottom: var(--sp-4); align-items: flex-start;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span style="font-size: var(--fs-xs); line-height: 1.4;"><strong>Flexible:</strong> Reschedule or cancel for free up to 24 hours before your slot.</span>
+      </div>
+      <div class="trust-item" style="display: flex; gap: var(--sp-3); align-items: flex-start;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span style="font-size: var(--fs-xs); line-height: 1.4;"><strong>Quality Guaranteed:</strong> 30-day warranty on all mechanical labor and parts.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home-community.html" class="footer-logo"><img src="assets/icons/bike-logo.svg" alt="VeloWorks"></a>
+        <p>Portland's trusted bike repair & rental shop since 2010.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="home-community.html">Home</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="repairs.html">Repairs</a></li>
+        <li><a href="bookings.html">Booking</a></li>
+        <li><a href="dashboard-user.html">Dashboard</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Support</h4><ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Visit Us</h4>
+        <address>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 42 Spoke Lane, Portland, OR 97201</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5a2 2 0 0 1 1.8-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.07a16 16 0 0 0 6.02 6.02l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+15035551234">(503) 555-1234</a></p>
+        </address>
+        <div class="footer-hours">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Fri: 8:00am – 7:00pm</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Saturday: 9:00am – 5:00pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ASR. All Rights Reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/booking.js"></script>
+</body>
+</html>

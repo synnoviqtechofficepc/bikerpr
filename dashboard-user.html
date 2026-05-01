@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeloWorks Member Dashboard — Track your rentals, repairs, membership, invoices, and account settings.">
+  <title>My Dashboard | VeloWorks Bike Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+<style>
+/* ── Dashboard-page-only overrides ─────────────────────────── */
+:root { --header-h: 72px; }
+/* Stats grid (Updated to give cards more breathing room) */
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Increased from 220px to 260px */
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+/* Failsafe to prevent long words from blowing out the card */
+.dashboard-stats-grid .stat-card > div:last-child {
+  min-width: 0;
+}
+.dashboard-stats-grid .stat-card__value {
+  overflow-wrap: break-word;
+  font-size: clamp(1.5rem, 4vw, var(--fs-3xl)); 
+  line-height: 1.1;
+}
+
+/* Two-col sections */
+.dashboard-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-8);
+}
+@media (max-width: 900px) {
+  .dashboard-two-col { grid-template-columns: 1fr; }
+}
+
+/* Widget overflow */
+.widget { height: auto; }
+.widget__body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Saved bikes grid */
+.saved-bikes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+@media (max-width: 1200px) { .saved-bikes-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .saved-bikes-grid { grid-template-columns: 1fr; } }
+
+/* Mobile invoice table */
+@media (max-width: 600px) {
+  .invoice-table thead { display: none; }
+  .invoice-table tr {
+    display: block;
+    margin-bottom: var(--sp-4);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: var(--sp-3);
+  }
+  .invoice-table td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: var(--sp-1) 0;
+  }
+  .invoice-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: var(--fs-xs);
+  }
+}
+
+/* Light mode sidebar text */
+[data-theme="light"] .dashboard-sidebar { background-color: #ffffff; }
+[data-theme="light"] .sidebar-nav-link,
+[data-theme="light"] .sidebar-logout,
+[data-theme="light"] .sidebar-username { color: #1a202c !important; }
+[data-theme="light"] .sidebar-nav-label { color: #718096; }
+[data-theme="light"] .sidebar-footer a { color: #4a5568 !important; }
+
+/* Active nav link */
+.sidebar-nav-link.active {
+  background-color: var(--clr-primary);
+  color: #fff !important;
+}
+
+/* Booking items on mobile */
+@media (max-width: 640px) {
+  .booking-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: var(--sp-3);
+  }
+  .booking-item > div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* ── Greeting card ───────────────────────────────────────────
+   Lives inside dashboard-content so it shares the same
+   horizontal padding as the stat cards below — perfect
+   left-edge alignment in every theme.
+   margin-bottom creates the visual gap between it and the
+   stat cards; margin-top + the content padding gives the
+   small breathing room below the sidebar header area.
+─────────────────────────────────────────────────────────────*/
+.greeting-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5) var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+
+.greeting-card__text h1 {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: var(--clr-text);
+  line-height: 1.2;
+}
+
+.greeting-card__text p {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  margin: 0;
+}
+
+.greeting-card__actions {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Mobile sidebar toggle inside greeting row */
+.greeting-card__toggle {
+  display: none;
+  font-size: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .greeting-card__toggle { display: flex; }
+}
+
+@media (max-width: 600px) {
+  .greeting-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
+  }
+  .greeting-card__actions { width: 100%; justify-content: flex-start; }
+}
+</style>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script id="theme-toggle-fixed">
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggleBtn = document.getElementById("themeToggle");
+  const icon = document.getElementById("themeIcon");
+  const root = document.documentElement;
+
+  // Load saved theme
+  let theme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", theme);
+  updateIcon(theme);
+
+  toggleBtn.addEventListener("click", () => {
+    theme = theme === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    updateIcon(theme);
+  });
+
+  function updateIcon(theme) {
+    if (theme === "dark") {
+      icon.className = "ph ph-sun";   // ☀️
+    } else {
+      icon.className = "ph ph-moon";  // 🌙
+    }
+  }
+
+});
+</script>
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <a href="home-community.html" class="header-logo">
+      <img src="assets/icons/bike-logo.svg" alt="VeloWorks" class="logo-img">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close-btn" id="closeMenu" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav-list">
+
+        <li class="nav-item has-dropdown">
+          <button class="nav-link dropdown-trigger">
+            Home <span class="dropdown-arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="home-community.html" class="dropdown-link"> Home – Community</a></li>
+            <li><a href="home-services.html" class="dropdown-link"> Home – Services</a></li>
+          </ul>
+        </li>
+
+        <li><a href="rentals.html" class="nav-link">Rentals</a></li>
+        <li><a href="repairs.html" class="nav-link">Repairs</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="dashboard-user.html" class="nav-link">Dashboard</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+
+        <div class="mobile-only nav-mobile-actions">
+          <a href="login.html" class="btn btn--outline btn--sm">Sign In / Sign Up</a>
+          <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+        </div>
+
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+<i class="ph" id="themeIcon"></i>      </button>
+
+      <button class="rtl-toggle" id="langToggle" aria-label="Toggle RTL layout">
+        <i class="ph ph-text-align-right"></i>
+      </button>
+
+      <div class="desktop-only header-cta" style="display: flex; gap: 16px;">
+        <a href="login.html" class="btn btn--outline btn--sm">Sign In</a>
+        <a href="rentals.html" class="btn btn--outline btn--sm">Rent a Bike</a>
+      </div>
+
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="dashboard-layout">
+
+    <!-- ══════════════════════════════════════════
+         SIDEBAR
+    ══════════════════════════════════════════ -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar" aria-label="Dashboard navigation">
+      <div class="sidebar-header">
+
+        <div class="sidebar-user">
+          <div class="sidebar-avatar">J</div>
+          <div>
+            <div class="sidebar-username">Jordan Rivera</div>
+            <div class="sidebar-plan"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Chainring Member</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Dashboard sections">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-label">Overview</div>
+          <a href="#" class="sidebar-nav-link active"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Dashboard</a>
+          <a href="#upcoming-rentals" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> Upcoming Rentals <span class="sidebar-nav-badge">2</span></a>
+          <a href="#repair-tracker" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span> My Repairs <span class="sidebar-nav-badge">1</span></a>
+        </div>
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-label">My Account</div>
+          <a href="#membership-overview" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg></span> Membership</a>
+          <a href="#rental-history" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg></span> Rental History</a>
+          <a href="#saved-bikes" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span> Saved Bikes</a>
+          <a href="#invoices" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span> Invoices & Payments</a>
+        </div>
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-label">Settings</div>
+          <a href="#account-settings" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Account Settings</a>
+          <a href="#notifications" class="sidebar-nav-link"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span> Notifications</a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="bookings.html" class="sidebar-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> New Booking</a>
+        <a href="repair-status.html" class="sidebar-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;margin-bottom:var(--sp-3);"><span class="sidebar-nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> Track Repair</a>
+        <button class="sidebar-logout" data-action="logout" aria-label="Sign out">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════════════════
+         MAIN CONTENT
+    ══════════════════════════════════════════ -->
+    <main class="dashboard-main" aria-label="Dashboard main content">
+
+      <div class="dashboard-content">
+
+        <!-- ── GREETING CARD ──────────────────────────────────
+             Sits inside dashboard-content → same left padding
+             as stat cards → perfect alignment in all themes.
+             Small margin-bottom separates it from the grid.
+        ────────────────────────────────────────────────────-->
+        <div class="greeting-card">
+          <div style="display:flex;align-items:center;gap:var(--sp-3);">
+            <!-- Sidebar toggle visible on mobile only -->
+            <button id="sidebarToggle" class="greeting-card__toggle" aria-label="Open menu"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+            <div class="greeting-card__text">
+              <h1>Good morning, Jordan</h1>
+              <p>Saturday, February 21, 2026 · Portland, OR · 56°F, Partly Cloudy</p>
+            </div>
+          </div>
+          <div class="greeting-card__actions">
+            <a href="repair-status.html" class="btn btn--ghost btn--sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> <span class="hide-mobile">Track Repair</span>
+            </a>
+            <a href="bookings.html" class="btn btn--primary btn--sm">
+              + <span class="hide-mobile">New Booking</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- STAT CARDS ROW -->
+        <div class="dashboard-stats-grid">
+          <div class="stat-card animate-fade-up">
+            <div class="stat-card__icon" style="background-color:var(--clr-primary-light);color:var(--clr-primary);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div>
+              <div class="stat-card__value">2</div>
+              <div class="stat-card__label">Upcoming Rentals</div>
+              <span class="stat-card__trend stat-card__trend--up">↑ Next: Feb 23</span>
+            </div>
+          </div>
+          <div class="stat-card animate-fade-up">
+            <div class="stat-card__icon" style="background-color:#fef9c3;color:#a16207;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div>
+              <div class="stat-card__value">1</div>
+              <div class="stat-card__label">Active Repair</div>
+              <span class="stat-card__trend stat-card__trend--up">60% Complete</span>
+            </div>
+          </div>
+          <div class="stat-card animate-fade-up">
+            <div class="stat-card__icon" style="background-color:#dbeafe;color:#1d4ed8;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+            <div>
+              <div class="stat-card__value">Chainring</div>
+              <div class="stat-card__label">Membership Plan</div>
+              <span class="stat-card__trend stat-card__trend--up">Renews Mar 1</span>
+            </div>
+          </div>
+          <div class="stat-card animate-fade-up">
+            <div class="stat-card__icon" style="background-color:#ffedd5;color:#c2410c;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            <div>
+              <div class="stat-card__value">1</div>
+              <div class="stat-card__label">Tune-up Credits</div>
+              <span class="stat-card__trend stat-card__trend--up">Resets Apr 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- UPCOMING RENTALS -->
+        <section id="upcoming-rentals" style="margin-bottom:var(--sp-8);">
+          <div class="widget">
+            <div class="widget__header">
+              <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Upcoming Rentals</h2>
+              <a href="bookings.html" class="btn btn--outline btn--sm">+ Book New</a>
+            </div>
+            <div class="widget__body" style="display:flex;flex-direction:column;gap:var(--sp-3);">
+
+              <div class="booking-item" data-booking-id="B001">
+                <div class="booking-item__date">
+                  <div class="booking-item__day">23</div>
+                  <div class="booking-item__month">Feb</div>
+                </div>
+                <div style="flex:1;">
+                  <div class="booking-item__title">Trail Blazer Pro FS — Mountain</div>
+                  <div class="booking-item__meta"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> VeloWorks Shop · Half-Day · 9:00 AM – 1:00 PM</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                  <span class="badge badge--success">Confirmed</span>
+                  <button class="btn btn--ghost btn--sm" data-action="cancel-booking" data-id="B001">Cancel</button>
+                </div>
+              </div>
+
+              <div class="booking-item" data-booking-id="B002">
+                <div class="booking-item__date">
+                  <div class="booking-item__day">1</div>
+                  <div class="booking-item__month">Mar</div>
+                </div>
+                <div style="flex:1;">
+                  <div class="booking-item__title">Gravel King 700c — Full Day</div>
+                  <div class="booking-item__meta"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> VeloWorks Shop · Full Day · 8:00 AM – 5:00 PM</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                  <span class="badge badge--success">Confirmed</span>
+                  <button class="btn btn--ghost btn--sm" data-action="cancel-booking" data-id="B002">Cancel</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- REPAIR TRACKER -->
+        <section id="repair-tracker" style="margin-bottom:var(--sp-8);">
+          <div class="widget">
+            <div class="widget__header">
+              <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Active Repair</h2>
+              <a href="repair-status.html" class="btn btn--outline btn--sm">Full Details →</a>
+            </div>
+            <div class="widget__body">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-4);margin-bottom:var(--sp-6);">
+                <div>
+                  <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Ticket #TKT-A3F7X</div>
+                  <div style="font-size:var(--fs-lg);font-weight:700;">Trek Marlin 7 — Drivetrain + Brake Bleed</div>
+                  <div style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-top:4px;">Mechanic: Lena Ortiz · Est. ready: Feb 21 by 5:00 PM</div>
+                </div>
+                <span class="badge badge--warning"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> In Progress</span>
+              </div>
+
+              <!-- Progress bar -->
+              <div style="margin-bottom:var(--sp-5);">
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-2);">
+                  <span style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-text-muted);">Repair Progress</span>
+                  <span style="font-size:var(--fs-xs);font-weight:700;color:var(--clr-primary);">60%</span>
+                </div>
+                <div class="repair-progress">
+                  <div class="repair-progress__bar" data-width="60%" style="width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Mini Timeline -->
+              <div class="timeline" role="list">
+                <div class="timeline__step done" role="listitem"><div class="timeline__node"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div><div class="timeline__label">Intake</div></div>
+                <div class="timeline__step done" role="listitem"><div class="timeline__node"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><polyline points="20 6 9 17 4 12"/></svg></div><div class="timeline__label">Diagnosed</div></div>
+                <div class="timeline__step active" role="listitem"><div class="timeline__node">3</div><div class="timeline__label">In Progress</div></div>
+                <div class="timeline__step" role="listitem"><div class="timeline__node">4</div><div class="timeline__label">QC Check</div></div>
+                <div class="timeline__step" role="listitem"><div class="timeline__node">5</div><div class="timeline__label">Ready</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MEMBERSHIP OVERVIEW + RENTAL HISTORY (2-col) -->
+        <div class="dashboard-two-col">
+          <!-- Membership -->
+          <section id="membership-overview">
+            <div class="widget" style="height:100%;">
+              <div class="widget__header">
+                <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> Membership</h2>
+                <a href="membership.html" class="btn btn--ghost btn--sm">Upgrade</a>
+              </div>
+              <div class="widget__body">
+                <div style="display:flex;align-items:center;gap:var(--sp-4);margin-bottom:var(--sp-5);">
+                  <div style="width:56px;height:56px;border-radius:var(--radius-md);background:linear-gradient(135deg,var(--clr-primary),var(--clr-secondary));display:flex;align-items:center;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+                  <div>
+                    <div style="font-size:var(--fs-xl);font-weight:800;">Chainring</div>
+                    <div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">$19/month · Renews Mar 1, 2026</div>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-5);">
+                  <div style="padding:var(--sp-3);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                    <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">20%</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Repair Discount</div>
+                  </div>
+                  <div style="padding:var(--sp-3);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                    <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">20%</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Rental Discount</div>
+                  </div>
+                  <div style="padding:var(--sp-3);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                    <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">1</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Tune-up Credit Left</div>
+                  </div>
+                  <div style="padding:var(--sp-3);background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center;">
+                    <div style="font-size:var(--fs-xl);font-weight:800;color:var(--clr-primary);">∞</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Flat Tyre Fixes</div>
+                  </div>
+                </div>
+                <div class="membership-progress-widget" data-rides="7" data-rides-total="10">
+                  <div style="display:flex;justify-content:space-between;font-size:var(--fs-xs);font-weight:700;margin-bottom:var(--sp-2);">
+                    <span style="color:var(--clr-text-muted);">Rides this quarter</span>
+                    <span style="color:var(--clr-primary);">7 / 10 (toward Podium)</span>
+                  </div>
+                  <div class="repair-progress">
+                    <div class="repair-progress__bar" style="width:0%;background:linear-gradient(90deg,var(--clr-accent),var(--clr-primary));"></div>
+                  </div>
+                  <p style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:var(--sp-2);">3 more rides and you qualify for a complimentary Podium upgrade!</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Rental History -->
+          <section id="rental-history">
+            <div class="widget" style="height:100%;">
+              <div class="widget__header">
+                <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg> Rental History</h2>
+                <a href="rentals.html" class="btn btn--ghost btn--sm">Book Again</a>
+              </div>
+              <div class="widget__body" style="padding:0;">
+                <table class="invoice-table">
+                  <thead><tr>
+                    <th>Bike</th><th>Date</th><th>Cost</th><th></th>
+                  </tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><strong style="font-size:var(--fs-xs);">Trail Blazer MTB</strong><br><span style="font-size:10px;color:var(--clr-text-muted);">Half-day</span></td>
+                      <td style="font-size:var(--fs-xs);">Feb 9</td>
+                      <td style="font-size:var(--fs-sm);font-weight:700;">$28</td>
+                      <td><button class="btn btn--ghost btn--sm" data-action="rebook" data-bike="Trail Blazer MTB">Rebook</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="font-size:var(--fs-xs);">City Cruiser 7</strong><br><span style="font-size:10px;color:var(--clr-text-muted);">Full day</span></td>
+                      <td style="font-size:var(--fs-xs);">Jan 26</td>
+                      <td style="font-size:var(--fs-sm);font-weight:700;">$28</td>
+                      <td><button class="btn btn--ghost btn--sm" data-action="rebook" data-bike="City Cruiser 7">Rebook</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="font-size:var(--fs-xs);">E-Commuter Pro</strong><br><span style="font-size:10px;color:var(--clr-text-muted);">Half-day</span></td>
+                      <td style="font-size:var(--fs-xs);">Jan 12</td>
+                      <td style="font-size:var(--fs-sm);font-weight:700;">$44</td>
+                      <td><button class="btn btn--ghost btn--sm" data-action="rebook" data-bike="E-Commuter Pro">Rebook</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="font-size:var(--fs-xs);">Gravel King 700c</strong><br><span style="font-size:10px;color:var(--clr-text-muted);">Full day</span></td>
+                      <td style="font-size:var(--fs-xs);">Dec 28</td>
+                      <td style="font-size:var(--fs-sm);font-weight:700;">$57.60</td>
+                      <td><button class="btn btn--ghost btn--sm" data-action="rebook" data-bike="Gravel King">Rebook</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SAVED BIKES -->
+        <section id="saved-bikes" style="margin-bottom:var(--sp-8);">
+          <div class="widget">
+            <div class="widget__header">
+              <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Saved Bikes</h2>
+              <a href="rentals.html" class="btn btn--ghost btn--sm">Browse Fleet →</a>
+            </div>
+            <div class="widget__body">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);">
+                <div class="saved-bike-card">
+                  <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=128&h=96&dpr=1" alt="Trail Blazer MTB" class="saved-bike-thumb">
+                  <div style="flex:1;">
+                    <div style="font-size:var(--fs-sm);font-weight:700;">Trail Blazer Pro FS</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Mountain · $35/half-day</div>
+                  </div>
+                  <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+                </div>
+                <div class="saved-bike-card">
+                  <img src="https://images.pexels.com/photos/1431117/pexels-photo-1431117.jpeg?auto=compress&cs=tinysrgb&w=128&h=96&dpr=1" alt="E-Commuter Pro" class="saved-bike-thumb">
+                  <div style="flex:1;">
+                    <div style="font-size:var(--fs-sm);font-weight:700;">E-Commuter Pro</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Electric · $55/half-day</div>
+                  </div>
+                  <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+                </div>
+                <div class="saved-bike-card">
+                  <img src="https://images.pexels.com/photos/1595485/pexels-photo-1595485.jpeg?auto=compress&cs=tinysrgb&w=128&h=96&dpr=1" alt="Gravel King" class="saved-bike-thumb">
+                  <div style="flex:1;">
+                    <div style="font-size:var(--fs-sm);font-weight:700;">Gravel King 700c</div>
+                    <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Gravel · $45/half-day</div>
+                  </div>
+                  <a href="rental-details.html" class="btn btn--primary btn--sm">Book</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- INVOICES -->
+        <section id="invoices" style="margin-bottom:var(--sp-8);">
+          <div class="widget">
+            <div class="widget__header">
+              <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Invoices &amp; Payments</h2>
+              <span style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Last 6 months</span>
+            </div>
+            <div class="widget__body" style="padding:0;">
+              <table class="invoice-table">
+                <thead><tr>
+                  <th>Invoice</th><th>Description</th><th>Date</th><th>Amount</th><th>Status</th><th></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">#INV-2026-041</td>
+                    <td>Trail Blazer Pro — Half Day Rental</td>
+                    <td>Feb 9, 2026</td>
+                    <td><strong>$28.00</strong></td>
+                    <td><span class="badge badge--success">Paid</span></td>
+                    <td><button class="btn btn--ghost btn--sm" data-action="download-invoice" data-id="INV-2026-041">↓ PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">#INV-2026-040</td>
+                    <td>Chainring Membership — February</td>
+                    <td>Feb 1, 2026</td>
+                    <td><strong>$19.00</strong></td>
+                    <td><span class="badge badge--success">Paid</span></td>
+                    <td><button class="btn btn--ghost btn--sm" data-action="download-invoice" data-id="INV-2026-040">↓ PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">#INV-2026-039</td>
+                    <td>Brake overhaul — Labour + Parts</td>
+                    <td>Jan 28, 2026</td>
+                    <td><strong>$72.00</strong></td>
+                    <td><span class="badge badge--success">Paid</span></td>
+                    <td><button class="btn btn--ghost btn--sm" data-action="download-invoice" data-id="INV-2026-039">↓ PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:var(--font-mono);font-size:var(--fs-xs);">#INV-2026-038</td>
+                    <td>Repair #TKT-A3F7X — Drivetrain + Brakes</td>
+                    <td>Pending</td>
+                    <td><strong>$165.00</strong></td>
+                    <td><span class="badge badge--warning">Pending</span></td>
+                    <td><span style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Pay on pickup</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACCOUNT SETTINGS -->
+        <section id="account-settings" style="margin-bottom:var(--sp-8);">
+          <div class="widget">
+            <div class="widget__header">
+              <h2 class="widget__title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Account Settings</h2>
+            </div>
+            <div class="widget__body">
+              <form id="accountSettingsForm" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);" novalidate>
+                <div class="form-group">
+                  <label for="settFirstName" class="form-label">First Name</label>
+                  <input type="text" id="settFirstName" class="form-control" value="Jordan">
+                </div>
+                <div class="form-group">
+                  <label for="settLastName" class="form-label">Last Name</label>
+                  <input type="text" id="settLastName" class="form-control" value="Rivera">
+                </div>
+                <div class="form-group">
+                  <label for="settEmail" class="form-label">Email Address</label>
+                  <input type="email" id="settEmail" class="form-control" value="jordan@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="settPhone" class="form-label">Phone</label>
+                  <input type="tel" id="settPhone" class="form-control" value="(503) 555-0199">
+                </div>
+                <div style="grid-column:1/-1;">
+                  <button type="submit" class="btn btn--primary">Save Changes</button>
+                </div>
+              </form>
+
+              <!-- Notifications -->
+              <div id="notifications" style="margin-top:var(--sp-8);padding-top:var(--sp-6);border-top:1px solid var(--clr-border);">
+                <h3 style="font-size:var(--fs-base);font-weight:700;margin-bottom:var(--sp-5);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="widget-title-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notification Preferences</h3>
+                <div style="display:flex;flex-direction:column;gap:var(--sp-4);">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);">
+                    <div>
+                      <div style="font-weight:600;font-size:var(--fs-sm);">Repair status updates</div>
+                      <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">Get notified when your repair moves to a new stage</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:44px;height:24px;">
+                      <input type="checkbox" class="notification-toggle" data-label="Repair updates" checked style="opacity:0;width:0;height:0;">
+                      <span style="position:absolute;inset:0;background:var(--clr-primary);border-radius:12px;cursor:pointer;"></span>
+                    </label>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);">
+                    <div>
+                      <div style="font-weight:600;font-size:var(--fs-sm);">Rental reminders</div>
+                      <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">24-hour reminder before your rental pickup</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:44px;height:24px;">
+                      <input type="checkbox" class="notification-toggle" data-label="Rental reminders" checked style="opacity:0;width:0;height:0;">
+                      <span style="position:absolute;inset:0;background:var(--clr-primary);border-radius:12px;cursor:pointer;"></span>
+                    </label>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--clr-bg-alt);border-radius:var(--radius-md);">
+                    <div>
+                      <div style="font-weight:600;font-size:var(--fs-sm);">Community events & rides</div>
+                      <div style="font-size:var(--fs-xs);color:var(--clr-text-muted);">New events, group rides, and workshop announcements</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:44px;height:24px;">
+                      <input type="checkbox" class="notification-toggle" data-label="Community events" style="opacity:0;width:0;height:0;">
+                      <span style="position:absolute;inset:0;background:var(--clr-border-dark);border-radius:12px;cursor:pointer;transition:background 0.2s;"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script>
+  // Animate progress bars on page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.repair-progress__bar[data-width]').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+      // Membership progress
+      const memBar = document.querySelector('.membership-progress-widget .repair-progress__bar');
+      if (memBar) memBar.style.width = '70%';
+    }, 500);
+  });
+</script>
+</body>
+</html>
